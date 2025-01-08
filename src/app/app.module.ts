@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MedicinesListComponent } from './medicines/medicines-list/medicines-list.component';
+import { MedicinesAddComponent } from './medicines/medicines-add/medicines-add.component';
+
 import{HttpClientModule}from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
@@ -20,14 +25,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 
 
-
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    // HomeComponent,
+    // AboutComponent,
+    MedicinesListComponent,
+    MedicinesAddComponent 
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    ReactiveFormsModule,
+    FormsModule
 
     HttpClientModule
     //NgxPaginationModule
