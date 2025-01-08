@@ -1,0 +1,62 @@
+<div class="patient-search-container">
+    <h2>Patient Search</h2>
+    
+    <!-- Search Box with Dynamic Label -->
+    <div class="search-box">
+      <input type="text" id="searchInput" [(ngModel)]="searchQuery" placeholder="Enter {{ searchType === 'phone' ? 'Phone Number' : 'Registration Number' }}" />
+      <button (click)="onSearch()">Search</button>
+    </div>
+    
+    <!-- Grid to display patient details -->
+    <div class="patient-grid" *ngIf="patientData.length > 0">
+      <table>
+        <thead>
+
+          <tr>
+            <th>Patient Registration Code</th>
+            <th>Patient Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>CreatedDate</th>
+            <th>Book Appointmnet</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patientData">
+            <td>{{ 'PT0'+patient.PatientId }}</td>
+            <td>{{ patient.PatientName }}</td>
+            <td>{{ patient.Dob | date:"dd/MM/yyyy"}}</td>
+            <td>{{ patient.Gender }}</td>
+            
+            <td>{{ patient.BloodGroup }}</td>
+            <td>{{ patient.PhoneNumber }}</td>
+            <td>{{ patient.Address }}</td>
+            <td>{{ patient.Email }}</td>
+            <td>{{ patient.CreatedDate | date:"dd/MM/yyyy"}}</td>
+            <td><button>Book </button></td>
+
+            <td>
+              
+              <button class="btn btn-sm btn-outline-info"><i class="fa fa-edit" (click)="editPatient(patient)"></i></button>
+              
+              <button class="btn btn-sm btn-outline-danger">
+             <i class="fa fa-trash"></i></button>
+
+             
+
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- No results message -->
+    <div *ngIf="noData">
+      <p>No results found for "{{ searchQuery }}"</p>
+    </div>
+  </div>
+  
