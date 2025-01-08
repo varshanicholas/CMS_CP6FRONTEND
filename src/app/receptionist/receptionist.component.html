@@ -1,0 +1,32 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div class="dashboard-container">
+    <div class="tile" (click)="togglePopup()">
+        <img src="assets/icons/searchpatient.png" alt="Patient Search" class="tile-icon" />
+        <span>Patient Search</span>
+    </div>
+    <div class="tile" (click)="navigateTo('/receptionist/patient-reg-add')">
+        <img src="assets/icons/AddPatient.png" alt="Patient Registration" class="tile-icon" />
+        <span>Patient Registration</span>
+    </div>
+    <div class="tile" (click)="navigateTo('/receptionist/appointments')">
+        <img src="assets/icons/appointment.png" alt="Today's Appointments" class="tile-icon" />
+        <span>Today's Appointments</span>
+    </div>
+</div>
+
+
+<div *ngIf="isPatientSearchPopupVisible" class="popup-overlay">
+    <div class="popup-container">
+        <h3>Patient Search</h3>
+        <div class="popup-buttons">
+            <button class="popup-btn" (click)="navigateToPatientSearch('phone')">
+                <span>Search By Phone Number</span>
+            </button>
+            <button class="popup-btn" (click)="navigateToPatientSearch('regnum')">
+                <span>Search By Registration Number</span>
+            </button>
+        </div>
+        <button class="close-btn" (click)="closePopup()">Close</button>
+    </div>
+</div>
