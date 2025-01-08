@@ -1,0 +1,71 @@
+<!-- (ngSubmit)="onSubmit(empForm)" -->
+
+<div class="container">
+  <h3>APPOINTMENT BOOKING</h3>
+
+  <hr>
+
+  <!--Template driven from form-->
+  <form name="appointmentForm" #empForm="ngForm" autocomplete="off">
+
+    <div class="form-group">
+      <input type="hidden" readonly name="AppontmentId"
+        [(ngModel)]="patientregService.formAppointmentData.AppointmentId" />
+
+    </div>
+
+    <div class="form-group">
+      <label>Department:</label>
+      <select name="Department" id="Department" #Department="ngModel"
+        [(ngModel)]="patientregService.formAppointmentData.DepartmentId"
+        class="form-control" required
+        (change)="onDepartmentChange($event)">
+        <option value="0" selected disabled> ---Select Department---</option>
+        <option *ngFor="let dept of patientregService.department" [value]="dept.DepartmentId">
+          {{dept.DepartmentName}}
+        </option>
+      </select>
+    </div>
+    
+    
+
+    
+ 
+  <div class="form-group">
+    <label>Doctor:</label>
+    <select name="DoctorName" id="DoctorName" [(ngModel)]="selectedDoctorId" (change)="onDoctorChange(selectedDoctorId)" class="form-control" required>
+      <option value="0" selected disabled>---Select Doctor---</option>
+      <option *ngFor="let doctor of doctors" [value]="doctor.DoctorId">
+        {{ doctor.staff.StaffName }}
+      </option>
+    </select>
+  </div>
+     
+  <div class="form-group">
+    <label>Appointmnet Date:</label>
+    <input type="date" name="AppointmentDate" 
+    #AppointmentDate="ngModel" class="form-control validation-error"
+    [(ngModel)]="patientregService.formAppointmentData.AppointmentDate"
+    class= "form-control"
+    placeholder="Enter the Appointment date "  
+    required 
+    [ngClass]="{'is-invalid': AppointmentDate.touched && AppointmentDate.invalid}"/>  
+    <!--touched : keyboard touch-cursor point-while we type-->
+    
+    <div class="validation-error" *ngIf="AppointmentDate.touched && AppointmentDate.invalid">
+        <div *ngIf="AppointmentDate.errors?.['required']">
+           Appointmnet Date is invalid or required!
+        </div>
+    </div>
+</div>
+
+  <div class="form-group">
+    <label>Consultation Fee:</label>
+    <input type="text" class="form-control" [value]="consultationFee" readonly />
+  </div>
+  
+    
+
+  </form>
+
+</div>
