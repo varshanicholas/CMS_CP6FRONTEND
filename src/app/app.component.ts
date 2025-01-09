@@ -34,7 +34,7 @@ export class AppComponent {
 
 // import { Component } from '@angular/core'; //namespace for the component
 
-// @Component({ 
+// @Component({
 //   selector: 'app-root', //represent the decorator
 //   templateUrl: './app.component.html',
 //   styleUrls: ['./app.component.scss']

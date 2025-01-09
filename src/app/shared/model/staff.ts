@@ -1,11 +1,5 @@
 
 import {Department} from "./department";
-export class Staff {
-
-    StaffId: number = 0;
-    StaffName: string = '';
-    Gender: string = '';
-    PhoneNumber: string = '';
 
 export class Staff {
     StaffId: number = 0;
@@ -30,6 +24,37 @@ export class Staff {
 }
 
 
+
+
+
+// import { Department } from "./department";
+
+// export class Staff {
+//     StaffId: number = 0;
+//     StaffName: string = '';
+//     Gender: string = '';
+//     PhoneNumber: string = '';
+//     Email: string = '';
+//     Dob: Date = new Date();
+//     Address: string = '';
+//     Qualification: string = '';
+//     DepartmentId: number = 0;
+//     IsActive: boolean = false;
+//     CreatedDate: Date = new Date();
+//     department: Department = new Department();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 // import { Department } from "./department";
 
 // export class Staff {
@@ -51,9 +76,4 @@ export class Staff {
 
    
 
-    DepartmentId: number = 0;
-    CreatedDate: Date = new Date();
-    IsActive: boolean = false;
-  }
-  
 

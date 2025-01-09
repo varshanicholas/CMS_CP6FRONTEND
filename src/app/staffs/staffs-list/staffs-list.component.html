@@ -1,67 +1,78 @@
 <div class="container">
-    <!-- Header -->
-    <!-- Staff info -->
-    <br>
-    <h3>Staff Info</h3>
-    <br>
-    <br>
-    <div class="header">
-      <div class="row">
-        <!-- Search -->
-        <div class="col-sm-8">
-          <input type="search" class="form-control" placeholder="Search here ....."
-          [(ngModel)]="searchTerm">
-        </div>
-  
-        <!-- Add Employee -->
-        <div class="col-sm-4">
-          <a [routerLink]="['/staffs/add']" role="button" class="btn btn-outline-primary">
-            <i class="fa fa-user-plus fa-lg"> </i> Add Staff
-          </a>
-        </div>
+  <!-- Header -->
+  <!-- Staff info -->
+  <br>
+  <h3>Staff Info</h3>
+  <br>
+  <br>
+  <div class="header">
+    <div class="row">
+      <!-- Search -->
+      <div class="col-sm-8">
+        <input type="search" class="form-control" placeholder="Search here ....."
+        [(ngModel)]="searchTerm">
+      </div>
+
+      <!-- Add Staff -->
+      <div class="col-sm-4">
+        <a [routerLink]="['/staffs/add']" role="button" class="btn btn-outline-primary">
+         <i class="fa fa-user-plus fa-lg"> </i> Add Staff
+        </a>
       </div>
     </div>
-  
-    <!-- Display Records -->
-    <br>
-    <br>
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">StaffCode</th>
-          <th scope="col">StaffName</th>
-          <th scope="col">Gender</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Email</th>
-          <th scope="col">DOB</th>
-          <th scope="col">Address</th>
-          <th scope="col">Qualification</th>
-          <th scope="col">CreatedDate</th>
-          <th scope="col">IsActive</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let staff of this.filteredStaffs()">
-          <td>{{'ST' + staff.StaffId}}</td>
-          <td>{{staff.StaffName}}</td>
-          <td>{{staff.Gender}}</td>
-          <td>{{staff.PhoneNumber}}</td>
-          <td>{{staff.Email}}</td>
-          <td>{{staff.Dob | date: 'dd-MMM-yyyy'}}</td>
-          <td>{{staff.Address}}</td>
-          <td>{{staff.Qualification}}</td>
-          <td>{{staff.CreatedDate | date: 'dd-MMM-yyyy'}}</td>
-          <td><input type="checkbox" [checked]="staff.IsActive" disabled></td>
-          <!-- <button class="btn btn-outline-info" (click)="editStaff(staff)">
-            <i class="fa fa-edit"></i>
-          </button> -->
-          &nbsp;
-          <!-- <button class="btn btn-outline-danger" (click)="deleteStaff(staff)">
-            <i class="fa fa-trash"></i>
-          </button> -->
-        </tr>
-      </tbody>
-    </table>
   </div>
-  
+
+  <!-- Display Records -->
+  <br>
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Staff Code</th>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Address</th>
+        <th scope="col">Qualification</th>
+        <!-- <th scope="col">Department</th> -->
+        <th scope="col">Created Date</th>
+        <th scope="col">Is Active</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let staff of this.filteredStaffs() | paginate:{ itemsPerPage: pageSize, currentPage: page }">
+
+        <td>{{'ST' + staff.StaffId}}</td>
+        <td>{{staff.StaffName}}</td>
+        <td>{{staff.Gender}}</td>
+        <td>{{staff.PhoneNumber}}</td>
+        <td>{{staff.Email}}</td>
+        <td>{{staff.Dob | date: "dd-MMM-yyyy"}}</td>
+        <td>{{staff.Address}}</td>
+        <td>{{staff.Qualification}}</td>
+        <!-- Uncomment and modify if Department is needed -->
+        <!-- <td>{{staff.department.DepartmentName}}</td> -->
+        <td>{{staff.CreatedDate | date: "dd-MMM-yyyy"}}</td>
+        <td><input type="checkbox" [checked]="staff.IsActive" disabled></td>
+        <td>
+          <!-- Linking editStaff and deleteStaff methods correctly -->
+          <button class="btn btn-outline-info" (click)="updatePutStaff(staff)">
+            <i class="fa fa-edit"></i>
+          </button>
+          &nbsp;
+          <button class="btn btn-outline-danger" (click)="deleteStaff(staff)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer">
+    <pagination-controls class="custom-page" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

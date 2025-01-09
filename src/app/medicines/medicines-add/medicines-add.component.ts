@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MedicinesService } from 'src/app/shared/service/medicines.service';
+import { MedicineService } from 'src/app/shared/service/medicines.service';
 
 @Component({
   selector: 'app-medicines-add',
@@ -14,7 +14,7 @@ export class MedicinesAddComponent implements OnInit {
   errorMessage: string | null = null;
 
   constructor(
-    public medicinesService: MedicinesService,
+    public medicinesService: MedicineService,
     private router: Router,
     private toastr: ToastrService
   ) {}

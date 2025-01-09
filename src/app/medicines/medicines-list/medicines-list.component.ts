@@ -1,10 +1,13 @@
+
+
+
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
+
 // import { ToastrService } from 'ngx-toastr';
-// import { Medicine } from 'src/app/shared/model/medicine';---------
-import { MedicinesService } from 'src/app/shared/service/medicines.service';
+import { Medicine } from 'src/app/shared/model/medicine';
+import { MedicineService } from 'src/app/shared/service/medicines.service';
 import { DatePipe } from '@angular/common';
-import { Medicine } from 'src/app/shared/model/medicines';
 
 @Component({
   selector: 'app-medicines-list',
@@ -17,27 +20,30 @@ export class MedicinesListComponent implements OnInit {
   pageSize: number = 5;
   searchTerm: string = '';
 
-  constructor(
-    public medicinesService: MedicinesService,
-    private router: Router,
-    // private toastr: ToastrService
-  ) {}
+  
+   constructor(public medicineService: MedicineService, private router: Router) { }
+   
+        ngOnInit(): void {
+            console.log("staff list component");
+            this.medicineService.getAllMedicines();
+          }
 
-  // Life-cycle hook
-  ngOnInit(): void {
-    console.log("Hi! I'm Medicines List Component");
-    this.medicinesService.getAllMedicines();
-  }
+//   constructor(
+//     public medicineService: MedicineService,
+//     private router: Router,
+//     // private toastr: ToastrService
+//   ) {}
 
+ 
   // Filtered Medicines based on search term
   filteredMedicines() {
     if (!this.searchTerm) {
-      return this.medicinesService.medicines;
+      return this.medicineService.medicines;
     }
 
     const searchTermLower = this.searchTerm.toLowerCase();
 
-    return this.medicinesService.medicines.filter((m) =>
+    return this.medicineService.medicines.filter((m) =>
       m.Name?.toLowerCase().includes(searchTermLower)
     );
   }
@@ -50,7 +56,7 @@ export class MedicinesListComponent implements OnInit {
     this.populateMedicineData(medicine);
 
     // Navigate to edit component
-    this.router.navigate(['/medicines/edit/' + medicine.MedicineId]);
+   // this.router.navigate(['/medicines/edit/' + medicine.MedicineId]);
   }
 
   // Populate Medicine Data
@@ -63,7 +69,7 @@ export class MedicinesListComponent implements OnInit {
     const formattedDate: any = datePipe.transform(medicine.ExpiryDate, 'yyyy-MM-dd');
     medicine.ExpiryDate = formattedDate;
 
-    this.medicinesService.formMedicineData = { ...medicine }; // Spread operator
+    this.medicineService.formMedicineData = { ...medicine }; // Spread operator
   }
 
   // Delete Medicine
@@ -73,11 +79,11 @@ export class MedicinesListComponent implements OnInit {
       // Simulating deletion, setting IsActive = false
       medicine.IsActive = false;
 
-      this.medicinesService.updateMedicine(medicine).subscribe(
+      this.medicineService.updateMedicine(medicine).subscribe(
         (response) => {
           console.log(response);
           // this.toastr.success('Medicine has been deleted successfully', 'Medicine Manager');
-          this.medicinesService.getAllMedicines();
+          this.medicineService.getAllMedicines();
         },
         (error) => {
           console.log(error);
@@ -87,3 +93,6 @@ export class MedicinesListComponent implements OnInit {
     }
   }
 }
+
+
+
