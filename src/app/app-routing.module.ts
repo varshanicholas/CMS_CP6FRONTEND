@@ -1,19 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { TestComponent } from './test/test.component';
+
+import { MedicinesListComponent } from './medicines/medicines-list/medicines-list.component';
+import { MedicinesAddComponent } from './medicines/medicines-add/medicines-add.component';
+import { StaffsComponent } from './staffs/staffs.component';
+
+
 
 import { StaffsComponent } from './staffs/staffs.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
-  // { path: 'home', component: HomeComponent },
-  // { path: 'about', component: AboutComponent },
- // { path: 'medicines/list', component: MedicinesListComponent },
- // { path: 'medicines/add', component: MedicinesAddComponent },
-  //{ path: '**', redirectTo: '/home' } ,// Wildcard route for a 404 page
 
-    {path : 'staffs', component: StaffsComponent,
+  {
+
+    path: 'doctors', component: DoctorsComponent,
+    loadChildren: () => import('./doctors/doctors.module')
+      .then(d => d.DoctorsModule)
+  },
+  {
+    
+    path: 'test', component: TestComponent,
+    loadChildren: () => import('./test/test.module')
+      .then(d => d.TestModule)
+  },
+   {path : 'staffs', component: StaffsComponent,
       loadChildren: () => import ('./staffs/staffs.module')
       .then(s => s.StaffsModule)
     },
@@ -26,7 +41,7 @@ const routes: Routes = [
       path: 'medicines', 
       loadChildren: () => import('./medicines/medicines.module').then(me => me.MedicinesModule)
     },
-
+  
 
 ];
 
@@ -34,9 +49,10 @@ const routes: Routes = [
 
 
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
 

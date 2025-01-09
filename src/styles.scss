@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import global styles */
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/css/font-awesome.css';
+@import '~ngx-toastr/toastr.css';
+
+/* Custom styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}

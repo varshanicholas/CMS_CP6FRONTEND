@@ -1,3 +1,6 @@
+
+
+
 import { Staff } from "./staff";
 
 export class Doctor {
@@ -10,5 +13,6 @@ export class Doctor {
     Staff: Staff = new Staff();
    
   }
+
 
 
