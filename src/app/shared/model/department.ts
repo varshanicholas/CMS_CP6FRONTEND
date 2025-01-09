@@ -4,10 +4,3 @@ export class Department {
     DepartmentName: string =  '';
 
 }
-
-
-    "DepartmentId":number=0;
-
-    "DepartmentName":string='';
-}
-
