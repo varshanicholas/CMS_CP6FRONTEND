@@ -5,13 +5,8 @@ import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.componen
 import { DoctorsComponent } from './doctors/doctors.component';
 import { TestComponent } from './test/test.component';
 
-import { MedicinesListComponent } from './medicines/medicines-list/medicines-list.component';
-import { MedicinesAddComponent } from './medicines/medicines-add/medicines-add.component';
 import { StaffsComponent } from './staffs/staffs.component';
 
-
-
-import { StaffsComponent } from './staffs/staffs.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 const routes: Routes = [
