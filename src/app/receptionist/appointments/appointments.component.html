@@ -28,9 +28,20 @@
     </div>
     
     
+    <div class="form-group">
+      <label>Doctor:</label>
+      <select name="DoctorName" id="DoctorName" [(ngModel)]="selectedDoctorId" 
+              (change)="onDoctorChange(selectedDoctorId)" class="form-control" required>
+        <option value="0" disabled selected>---Select Doctor---</option>
+        <option *ngFor="let doctor of doctors" [value]="doctor.DoctorId">
+          {{ doctor.Staff.StaffName || 'Unknown' }}
 
+        </option>
+      </select>
+    </div>
     
- 
+    
+<!--  
   <div class="form-group">
     <label>Doctor:</label>
     <select name="DoctorName" id="DoctorName" [(ngModel)]="selectedDoctorId" (change)="onDoctorChange(selectedDoctorId)" class="form-control" required>
@@ -39,7 +50,7 @@
         {{ doctor.staff.StaffName }}
       </option>
     </select>
-  </div>
+  </div> -->
      
   <div class="form-group">
     <label>Appointmnet Date:</label>
@@ -60,11 +71,15 @@
 </div>
 
   <div class="form-group">
-    <label>Consultation Fee:</label>
+    <label>Consultation Fees:</label>
     <input type="text" class="form-control" [value]="consultationFee" readonly />
   </div>
   
-    
+  <div class="form-group">
+    <label>Registartion Fees:</label>
+    <input type="text" class="form-control" [value]="consultationFee" readonly />
+  </div>
+  
 
   </form>
 

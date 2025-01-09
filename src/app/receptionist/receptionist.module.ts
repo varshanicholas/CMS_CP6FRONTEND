@@ -14,6 +14,7 @@ import { PatientSearchComponent } from './patient-search/patient-search.componen
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { PatientregService } from '../shared/service/patientreg.service';
+import { AppointmnetBillComponent } from './appointmnet-bill/appointmnet-bill.component';
 const routes: Routes = [
   {
     path: '',
@@ -49,7 +50,8 @@ const routes: Routes = [
     PatientregListComponent,
     PatientregEditComponent,
     PatientSearchComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    AppointmnetBillComponent
     ],
   imports: [
     CommonModule,
