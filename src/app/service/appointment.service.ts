@@ -22,7 +22,7 @@ constructor(private httpClient: HttpClient) { }
 // 1 - Get All Employee
 getTodayAppointments(docId:any) : void
 {
-  this.httpClient.get(environment.apiUrl + 'ViewPatientAppointment/today/' + 'doctorId') //restapi url
+  this.httpClient.get(environment.apiUrl + 'ViewPatientAppointment/today/' + docId) //restapi url
   .toPromise()
   .then((response?: any) =>{
     console.log("Ïn service");

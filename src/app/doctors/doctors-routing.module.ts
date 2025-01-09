@@ -7,7 +7,7 @@ const routes: Routes = [
 
   // { path: 'appointments-today', component: DoctorAppointmentsTodayComponent },
   // { path: 'appoint', component: DoctorListComponent },
-  { path: 'list/:doctorId', component: ListDoctorsComponent },
+  { path: 'list/:docId', component: ListDoctorsComponent },
   { path: 'add', component: DoctorAddComponent }
 ];
 

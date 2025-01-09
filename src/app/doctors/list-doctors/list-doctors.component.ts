@@ -28,12 +28,12 @@ export class ListDoctorsComponent implements OnInit {
   ngOnInit(): void {
     // Get doctor ID from route parameters
     const docId = Number(this.route.snapshot.paramMap.get('docId'));
-
+    console.log('Doctor ID:', docId);
     if (docId) {
       // Fetch appointments for the doctor
       this.appointmentService.getTodaysAppointments(docId).subscribe(
         (response:any) => {
-          this.appointments = response;
+          this.appointmentService.appointments = response;
           console.log(this.appointments);
         },
         (error:any) => {
