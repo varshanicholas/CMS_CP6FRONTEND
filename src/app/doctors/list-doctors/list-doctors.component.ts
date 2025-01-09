@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Appointment } from 'src/app/shared/model/appointment.model';
-import { AppointmentService } from 'src/app/service/appointment.service';
+import { AppointmentService } from 'src/app/shared/service/appointment.service';
 
 @Component({
   selector: 'app-list-doctors',

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Doctor } from '../shared/model/doctor';
-import { Appointment } from '../shared/model/appointment.model';
+import { Doctor } from '../model/doctor';
+import { Appointment } from '../model/appointment.model';
 import { Observable } from 'rxjs';
+import { StartConsultation } from '../model/DoctorStartConsultationViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AppointmentService {
 //List of employees
 // doctors: Doctor[] = []; //employees data will be stored her, when getAllEmployees() is executed
  appointments: Appointment[]=[]; 
+ startConsultation:StartConsultation[]=[];
 
 //Constructor injection-dependency injection
 //DI: httpClient
@@ -41,4 +43,33 @@ getTodaysAppointments(doctorId: number): Observable<Appointment[]> {
     `${environment.apiUrl}ViewPatientAppointment/today/${doctorId}`
   );
 }
+
+// Method to insert a new consultation
+insertStartConsultation(doctor: StartConsultation): Observable<any> {
+  console.log("Insert: In service");
+  return this.httpClient.post(environment.apiUrl + 'DoctorStartConsultation/start-consultation',doctor);
 }
+
+
+/*//3 - patient - Get all patient
+getAllPatients() : void
+{
+  this.httpClient.get(environment.apiUrl + 'patient/v2')
+  .toPromise()
+  .then((response?: any) =>{
+    if(response.Value)
+    {
+      this.patients = response.Value;
+     console.log(this.patients);
+    }
+  })
+  .catch((error:any) => {
+    console.log('Error occured: ',error);
+  });
+}*/
+
+
+}
+
+
+  

@@ -1,15 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { TestComponent } from './test/test.component';
-import { ReceptionistComponent } from './receptionist/receptionist.component';
-
-// import { HomeComponent } from './home/home.component';
-// import { AboutComponent } from './about/about.component';
-import { MedicinesListComponent } from './medicines/medicines-list/medicines-list.component';
-import { MedicinesAddComponent } from './medicines/medicines-add/medicines-add.component';
 import { StaffsComponent } from './staffs/staffs.component';
 
 
@@ -39,7 +31,7 @@ const routes: Routes = [
     {path : 'staffs', component: StaffsComponent,
       loadChildren: () => import ('./staffs/staffs.module')
       .then(s => s.StaffsModule)
-    },
+    }
   
 
 ];
