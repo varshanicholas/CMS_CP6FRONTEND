@@ -1,0 +1,94 @@
+.dashboard-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.tile {
+    flex: 1;
+    max-width: calc(33.33% - 20px);
+    /* Each tile takes 1/3 of the screen with spacing */
+    height: calc(33.33vh - 20px);
+    /* Height adjusted to maintain proportional size */
+    margin: 0 10px;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tile-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.tile:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.popup-btn {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border-color: rgb(94, 94, 94);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+}
+
+.popup-btn:hover {
+    background-color: #acb7c3;
+}
+
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
