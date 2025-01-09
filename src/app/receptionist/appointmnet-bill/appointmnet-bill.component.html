@@ -1,0 +1,47 @@
+<p>appointmnet-bill works!</p>
+
+
+<div class="container">
+    <h3>APPOINTMENT BILL</h3>
+    <hr>
+  
+    <div class="bill-info">
+      <table>
+        <tr>
+          <th>Appointment No:</th>
+          <p>{{ patientregService.formAppointmentData.AppointmentId }}</p>
+        </tr>
+        <!-- <tr>
+          <th>Department:</th>
+          <td>{{ selectedDepartmentId?.DepartmentName }}</td>
+        </tr> -->
+        <tr>
+          <th>Doctor:</th>
+          <td>{{ selectedDoctorId?.staff?.StaffName || 'Unknown' }}</td>
+        </tr>
+        <tr>
+          <th>Appointment Date:</th>
+          <td>{{ patientregService.formAppointmentData.AppointmentDate | date }}</td>
+        </tr>
+        <tr>
+          <th>Consultation Fee:</th>
+          <td>{{ consultationFee | currency }}</td>
+        </tr>
+        <tr>
+          <th>Registration Fee:</th>
+          <td>{{ registrationFee | currency }}</td>
+        </tr>
+        <tr>
+          <th>Total Amount:</th>
+          <td>{{ totalAmount | currency }}</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="bill-footer">
+      <p>Thank you for booking your appointment with us!</p>
+    </div>
+  
+    <button >Download Bill</button>
+  </div>
+  <!-- (click)="generateBillPDF()" -->
