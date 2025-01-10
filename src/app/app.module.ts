@@ -9,12 +9,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
-import { MedicinesComponent } from './medicines/medicines.component';
+
+import { UserregistrationComponent } from './model/userregistration/userregistration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MedicinesComponent,
+   
+    UserregistrationComponent,
   ],
   imports: [
     BrowserModule,

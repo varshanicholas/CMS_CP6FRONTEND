@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+
+
 import { StaffsRoutingModule } from './staffs-routing.module';
 import { StaffsComponent } from './staffs.component';
 import { StaffsAddComponent } from './staffs-add/staffs-add.component';
@@ -23,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     StaffsRoutingModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    FormsModule
+   FormsModule
   ]
 })
 export class StaffsModule { }

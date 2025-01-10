@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MedicinesListComponent } from './medicines-list/medicines-list.component';
-import { MedicinesAddComponent } from './medicines-add/medicines-add.component';
+import { MedicinesListComponent } from './medicine-list/medicines-list.component';
+import { MedicinesAddComponent } from './medicine-add/medicine-add.component';
 //import { MedicinesEditComponent } from './medicines-edit/medicines-edit.component';
 
 
