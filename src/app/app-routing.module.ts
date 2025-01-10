@@ -10,44 +10,40 @@ import { StaffsComponent } from './staffs/staffs.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 const routes: Routes = [
-
+  // {
+  //   path: 'doctors',
+  //   component: DoctorsComponent,
+  //   loadChildren: () =>
+  //     import('./doctors/doctors.module').then((d) => d.DoctorsModule),
+  // },
   {
-
-    path: 'doctors', component: DoctorsComponent,
-    loadChildren: () => import('./doctors/doctors.module')
-      .then(d => d.DoctorsModule)
+    path: 'test',
+    component: TestComponent,
+    loadChildren: () => import('./test/test.module').then((d) => d.TestModule),
   },
   {
-    
-    path: 'test', component: TestComponent,
-    loadChildren: () => import('./test/test.module')
-      .then(d => d.TestModule)
+    path: 'staffs',
+    component: StaffsComponent,
+    loadChildren: () =>
+      import('./staffs/staffs.module').then((s) => s.StaffsModule),
   },
-   {path : 'staffs', component: StaffsComponent,
-      loadChildren: () => import ('./staffs/staffs.module')
-      .then(s => s.StaffsModule)
-    },
-    {
-      path: 'receptionist', 
-      loadChildren: () => import('./receptionist/receptionist.module').then(m => m.ReceptionistModule)
-    },
+  {
+    path: 'receptionist',
+    loadChildren: () =>
+      import('./receptionist/receptionist.module').then(
+        (m) => m.ReceptionistModule
+      ),
+  },
 
-    {
-      path: 'medicines', 
-      loadChildren: () => import('./medicines/medicines.module').then(me => me.MedicinesModule)
-    },
-  
-
+  {
+    path: 'medicines',
+    loadChildren: () =>
+      import('./medicines/medicines.module').then((me) => me.MedicinesModule),
+  },
 ];
-
- 
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}

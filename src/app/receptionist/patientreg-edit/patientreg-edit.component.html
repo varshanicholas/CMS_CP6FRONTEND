@@ -21,7 +21,7 @@
             [(ngModel)]="patientregService.formPatientData.PatientName"
             placeholder="Enter Patient Name" minlength="3" maxlength="25" 
             required 
-            [ngClass]="{'is-invalid': PatientName.touched && PatientName.invalid}"/>
+            [ngClass]="{'is-invalid': PatientName.touched && PatientName.invalid}" readonly/>
             
             <div class="validation-error" *ngIf="PatientName.touched && PatientName.invalid">
                 <div *ngIf="PatientName.errors?.['required']">
@@ -37,7 +37,7 @@
             #Dob="ngModel" class="form-control validation-error"
             [(ngModel)]="patientregService.formPatientData.Dob"
             required
-            [ngClass]="{'is-invalid': Dob.touched && Dob.invalid}"/>
+            [ngClass]="{'is-invalid': Dob.touched && Dob.invalid}" readonly/>
             
             <div class="validation-error" *ngIf="Dob.touched && Dob.invalid">
                 <div *ngIf="Dob.errors?.['required']">
@@ -52,7 +52,7 @@
             <select name="Gender" id="Gender" 
             #Gender="ngModel" 
             [(ngModel)]="patientregService.formPatientData.Gender" 
-            class="form-control" required>
+            class="form-control" required readonly>
                 <option value="" disabled selected>--- Select Gender ---</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -71,7 +71,7 @@
             <select name="BloodGroup" id="BloodGroup" 
             #BloodGroup="ngModel" 
             [(ngModel)]="patientregService.formPatientData.BloodGroup" 
-            class="form-control" required>
+            class="form-control" required readonly>
                 <option value="" disabled selected>--- Select Blood Group ---</option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
