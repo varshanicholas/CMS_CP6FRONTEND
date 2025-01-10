@@ -8,11 +8,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,6 +25,7 @@ import { BrowserModule } from '@angular/platform-browser';
     RouterModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot()
 
 

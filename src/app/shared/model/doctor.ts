@@ -11,6 +11,7 @@ export class Doctor {
     IsActive: boolean = false;
   
     Staff: Staff = new Staff();
+  DoctorName: string | undefined;
    
   }
 
