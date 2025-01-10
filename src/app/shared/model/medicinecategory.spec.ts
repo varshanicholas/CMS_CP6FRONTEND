@@ -1,6 +1,6 @@
 import { Medicinecategory } from './medicinecategory';
 
-describe('Medicinecategory', () => {
+describe('medicinecategory', () => {
   it('should create an instance', () => {
     expect(new Medicinecategory()).toBeTruthy();
   });

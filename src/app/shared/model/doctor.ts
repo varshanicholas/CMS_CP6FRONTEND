@@ -10,8 +10,9 @@ export class Doctor {
     SpecializationId: number = 0;
     IsActive: boolean = false;
   
-    staff: Staff = new Staff();
-    StaffName: string | null = null; 
+    Staff: Staff = new Staff();
+  DoctorName: string | undefined;
+   
   }
 
 

@@ -43,27 +43,17 @@ export class PatientSearchComponent implements OnInit {
 
 
   //edit patient
-
-
-editPatient(patient: Patient): void {
-  this.populatePatientData(patient); 
-  this.router.navigate(['/receptionist/patientreg-edit', patient.PatientId]); 
-}
-
-//getting employee for populate the data
-
-populatePatientData(patient :Patient){
-  console.log("Inside populate method");
-    console.log(patient);
-    //transform date format as yyyy-MM-dd
-
-    var datePipe=new DatePipe("en-UK");
-
-    let formattedDate :any=datePipe.transform(patient.Dob,'yyyy-MM-dd');
-    patient.Dob=formattedDate;
-
-    this.patientService.formPatientData={...patient}
-
-}
-
+  editPatient(patient: Patient): void {
+    this.populatePatientData(patient); 
+    this.router.navigate(['/receptionist/edit', patient.PatientId]); // Pass the patient ID as a parameter
+  }
+  populatePatientData(patient: any): void {
+    console.log("Inside populate method", patient);
+  
+    const datePipe = new DatePipe('en-US');
+    patient.Dob = datePipe.transform(patient.Dob, 'yyyy-MM-dd') || '';
+  
+    this.patientService.formPatientData = { ...patient };
+  }
+  
 }

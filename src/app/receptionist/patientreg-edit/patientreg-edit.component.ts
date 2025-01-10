@@ -33,30 +33,28 @@ export class PatientregEditComponent implements OnInit {
     }
 
 //Insert Method
-
-updatePatient(patForm:NgForm){
-  console.log("Updating...")
+updatePatient(patForm: NgForm): void {
+  console.log("Updating...");
   this.patientregService.updatePatient(patForm.value).subscribe(
-    (response)=>{
+    (response) => {
       console.log(response);
-      this.toastr.success('updated successfully ');
+      this.toastr.success('Patient updated successfully');
+      this.errorMessage = null;
 
-
-      this.errorMessage=null;
-
-      //refresh the list and navigate the employee list
+      // Refresh the patient list
       this.patientregService.getAllPatients();
 
-      this.router.navigate(['/receptionist/updatepatient/{id}']);
+      // Navigate back to the patient list or details page
+      this.router.navigate(['/receptionist/list']); // Redirect to the patient list after update
       patForm.reset();
     },
-
-    (error)=>{
+    (error) => {
       console.log(error);
-      this.toastr.error('An error occured try again...')
-      this.errorMessage='An Error occured'+error;
+      this.toastr.error('An error occurred. Please try again.');
+      this.errorMessage = 'An error occurred: ' + error;
     }
   );
 }
+
 
 }

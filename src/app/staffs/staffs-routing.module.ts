@@ -3,19 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { StaffsListComponent } from './staffs-list/staffs-list.component';
 import { StaffsAddComponent } from './staffs-add/staffs-add.component';
 import { StaffsEditComponent } from './staffs-edit/staffs-edit.component';
+import { StaffsSearchComponent } from './staffs-search/staffs-search.component';
 
 const routes: Routes = [
   //            //SETTING-UP CHILDREN ROUTES
-//   //staff-list
-  {path : 'list', component: StaffsListComponent},
+  //   //staff-list
+  { path: 'list', component: StaffsListComponent },
 
-//   //staff-add
-  {path : 'add', component: StaffsAddComponent},
+  //   //staff-add
+  { path: 'add', component: StaffsAddComponent },
 
-//   //staff-edit
-  {path : 'edit/:id', component: StaffsEditComponent},
+  //   //staff-edit
+  { path: 'edit/:id', component: StaffsEditComponent },
 
-
+  { path: 'search/:id', component: StaffsSearchComponent },
 
 
 ];

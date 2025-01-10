@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/app/shared/model/department';
 import { Doctor } from 'src/app/shared/model/doctor';
+import { NewAppointment } from 'src/app/shared/model/new-appointment';
+import { Patient } from 'src/app/shared/model/patient';
 import { PatientregService } from 'src/app/shared/service/patientreg.service';
 import { environment } from 'src/environments/environment';
 
@@ -12,79 +15,194 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit {
-
   departmentList: Department[] = [];
   doctors: Doctor[] = [];
   selectedDepartmentId: number = 0;
-  consultationFee: number = 0; 
-selectedDoctorId: any;
-  
+  consultationFee: number = 0;
+  selectedDoctorId: any;
+  registrationFees: any;
+  patientId: any;
+  patientName: any;
+errorMessage: any;
+  toastr: any;
+  router: any;
+
   constructor(
     public patientregService: PatientregService,
-    private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {}
 
+  // ngOnInit(): void {
+  //   this.patientregService.getAllDepartments();
+  // }
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.patientId = params['id'] || null;
+      this.patientName = params['name'] || null;
+  
+      console.log('Fetched Patient Data:', {
+        id: this.patientId,
+        name: this.patientName,
+      });
+    });
+  
+    // Fetch departments as well
     this.patientregService.getAllDepartments();
   }
-  // onDepartmentChange(): void {
-  //   const departmentId = this.patientregService.formAppointmentData.DepartmentId;
   
-  //   if (departmentId) {
-  //     this.patientregService.getDoctorsByDepartmentId(departmentId).subscribe(
-  //       (data: Doctor[]): void => {
-  //         this.doctors = data;
-  //         console.log('Doctors fetched successfully:', this.doctors);
-  //       },
-  //   () => {
-  //         console.error('Error fetching doctors:', error.message || error);
-  //       }
-  //     );
-  //   } else {
-  //     console.warn('No department selected.');
-  //   }
-  // }
+  onSubmit(appForm: NgForm): void {
+    console.log('Form Values Submitted:', appForm);
+    this.bookAppointment(appForm);
+
+    appForm.reset();
+
+  //Redirect to Employee List
+this.router.navigate(['/receptionist']);
+  }
+  
+
+
+  
+  
 
   onDepartmentChange(event: Event): void {
     console.log('onDepartmentChange: start');
-    const target = event.target as HTMLSelectElement; 
+    const target = event.target as HTMLSelectElement;
     const selectedDepartmentId = Number(target.value); // Convert the value to a number
-    console.log('onDepartmentChange: mid:'+selectedDepartmentId);
-    
+    console.log('onDepartmentChange: mid:' + selectedDepartmentId);
+
     if (selectedDepartmentId) {
-      this.patientregService.getDoctorsByDepartmentId(selectedDepartmentId).subscribe(
-        (data: Doctor[]) => {
-          this.doctors = data; // Assign fetched data to the `doctors` property
-          console.log('Doctors fetched successfully:', this.doctors);
-        },
-        (error: any) => {
-          console.error('Error fetching doctors:', error.message || error);
-        }
-      );
+      this.patientregService
+        .getDoctorsByDepartmentId(selectedDepartmentId)
+        .subscribe(
+          (data: Doctor[]) => {
+            this.doctors = data; // Assign fetched data to the `doctors` property
+            console.log('Doctors fetched successfully:', this.doctors);
+          },
+          (error: any) => {
+            console.error('Error fetching doctors:', error.message || error);
+          }
+        );
     } else {
       console.warn('No department selected.');
     }
   }
-  
-  
 
-  onDoctorChange(doctorId: number): void {
-    this.patientregService.getConsultationFeeByDoctorId(doctorId)
-      .then((fee) => {
-        this.consultationFee = fee;
-        console.log('Consultation Fee:', this.consultationFee);
-      })
-      .catch((error) => {
-        console.error('Error fetching consultation fee:', error);
-      });
+  onDoctorChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+
+    if (target && target.value) {
+      const selectedDoctorId = Number(target.value);
+      console.log('Selected Doctor ID:', selectedDoctorId);
+
+      if (selectedDoctorId > 0) {
+        this.patientregService
+          .getConsultationFeeByDoctorId(selectedDoctorId)
+          .subscribe(
+            (fee: number) => {
+              this.consultationFee = fee;
+              console.log(
+                'Consultation Fee fetched successfully:',
+                this.consultationFee
+              );
+            },
+            (error: any) => {
+              console.error('Error fetching consultation fee:', error);
+              this.consultationFee = 0;
+            }
+          );
+      } else {
+        console.warn('No valid doctor selected.');
+        this.consultationFee = 0;
+      }
+    } else {
+      console.error('Event target is not valid.');
+    }
   }
-
-  // bookAppointment() {
-  //   const appointmentData = this.appointmentForm.value;
-  //   this.http.post('/api/Appointment/SaveAppointment', appointmentData).subscribe((response) => {
-  //     console.log('Appointment booked successfully', response);
-  //     alert('Appointment booked successfully!');
-  //   });
+  // bookAppointment(appForm: NgForm): void {
+  //   if (!appForm.valid) {
+  //     this.toastr.error('Please fill out all required fields!');
+  //     return;
+  //   }
+  
+  //   // Find the selected doctor and department by their IDs
+  //   const selectedDoctor = this.doctors.find(
+  //     (doc) => doc.DoctorId === appForm.value.DoctorId
+  //   );
+  //   const selectedDepartment = this.patientregService.department.find(
+  //     (dept) => dept.DepartmentId === appForm.value.DepartmentId
+  //   );
+  
+  //   // Check if doctor and department are selected correctly
+  //   if (!selectedDoctor || !selectedDepartment) {
+  //     this.toastr.error('Invalid Doctor or Department selection.');
+  //     return;
+  //   }
+  
+  //   const formAppointmentData: NewAppointment = {
+  //     AppointmentId: 0, // Auto-generated by the backend
+  //     PatientId: this.patientId,
+  //     DoctorId: appForm.value.DoctorId,
+  //     DepartmentId: appForm.value.DepartmentId,
+  //     AppointmentDate: appForm.value.AppointmentDate,
+  //     TokenNumber: 0, // Backend should handle token logic if required
+  //     ConsultationFees: this.consultationFee,
+  //     RegistrationFees: this.registrationFees || 100, // Default registration fee
+  //     ConsultationStatus: false, // Default status
+  //     DocAvlId: 0, // Optional: Backend to assign if necessary
+  //     CreatedDate: new Date(),
+  //     department: new Department,
+  //     doctor: new Doctor,
+  //     patient: new Patient
+  //   };
+  
+  //   console.log('Appointment Data:', formAppointmentData);
+  
+  //   // Send the appointment data to the backend
+  //   this.http
+  //     .post<NewAppointment>(
+  //       `${environment.apiUrl}Appointment/SaveAppointment`,
+  //       formAppointmentData
+  //     )
+  //     .subscribe(
+  //       (response) => {
+  //         console.log('Appointment booked successfully:', response);
+  //         this.toastr.success('Appointment booked successfully!');
+  //         appForm.reset();
+  //       },
+  //       (error) => {
+  //         console.error('Error booking appointment:', error);
+  //         this.toastr.error('Failed to book the appointment.');
+  //       }
+  //     );
   // }
+  
+  
+
+  
+//Insert Method
+
+bookAppointment(appForm:NgForm){
+  console.log("Inserting...")
+  this.patientregService.insertAppointment(appForm.value).subscribe(
+    (response)=>{
+      console.log(response);
+      this.toastr.success('Appointment Booked successfully ');
+
+      this.errorMessage=null;
+
+      this.router.navigate(['/receptionist']);
+   
+    },
+
+    (error)=>{
+      console.log(error);
+      this.toastr.error('An error occured try again...')
+      this.errorMessage='An Error occured'+error;
+    }
+  );
+}
+  
+  
 }

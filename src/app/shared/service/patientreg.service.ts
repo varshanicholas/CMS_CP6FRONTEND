@@ -24,7 +24,7 @@ export class PatientregService {
 
   appointment: NewAppointment[] = [];
   department: Department[] = [];
-  doctor: Doctor[]=[];
+  doctor: Doctor[] = [];
   formAppointmentData: NewAppointment = new NewAppointment();
 
   //DI: Httpclient
@@ -62,13 +62,14 @@ export class PatientregService {
     );
   }
 
-  // //4-update an employee
-
-  updatePatient(patients: Patient): Observable<any> {
-    console.log('Update : In service');
+  // 4-update an employee
+  updatePatient(patient: Patient): Observable<any> {
+    console.log('Update Patient: In Service');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.put(
-      `${environment.apiUrl}receptionist/updatepatient` + patients.PatientId,
-      patients
+      `${environment.apiUrl}receptionist/updatepatient/${patient.PatientId}`,
+      patient,
+      { headers }
     );
   }
 
@@ -89,34 +90,25 @@ export class PatientregService {
       });
   }
 
-  // getDoctorsByDepartmentId(departmentId: number): void {
-  //   this.httpClient
-  //     .get<any[]>(`${environment.apiUrl}/Appointment/doctors/${departmentId}`)
-  //     .toPromise()
-  //     .then((response: any) => {
-  //       if (response) {
-  //         console.log('Doctors List: ', response);
-  //         // You can assign the response to a variable if needed
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error occurred: ', error);
-  //     });
-  // }
-  
   getDoctorsByDepartmentId(departmentId: number): Observable<Doctor[]> {
-    return this.httpClient.get<Doctor[]>(`${environment.apiUrl}Appointment/doctors/${departmentId}`);
+    return this.httpClient.get<Doctor[]>(
+      `${environment.apiUrl}Appointment/doctors/${departmentId}`
+    );
   }
-  
 
-getConsultationFeeByDoctorId(doctorId: number): Promise<number> {
-  return firstValueFrom(
-    this.httpClient.get<number>(`${environment.apiUrl}consultationfees/${doctorId}`)
-  );
-}
+  getConsultationFeeByDoctorId(doctorId: number): Observable<number> {
+    return this.httpClient.get<number>(
+      `${environment.apiUrl}Appointment/${doctorId}`
+    );
+  }
 
-
-
-
-
+  insertAppointment(newAppointment: NewAppointment): Observable<any> {
+    console.log('Insert Patient: In Service');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(
+      `${environment.apiUrl}Appointment/SaveAppointment`,
+      newAppointment,
+      { headers }
+    );
+  }
 }
