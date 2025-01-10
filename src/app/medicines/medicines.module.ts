@@ -8,8 +8,15 @@ import { MedicineEditComponent } from './medicine-edit/medicine-edit.component';
 import { MedicinesListComponent } from './medicine-list/medicine-list.component';
 
 
+
 @NgModule({
-  declarations: [
+  declarations: [],
+  imports: [
+    CommonModule,
+    MedicinesRoutingModule,
+
+
+
    MedicineAddComponent,
    MedicineEditComponent,
    MedicinesListComponent
@@ -19,6 +26,7 @@ import { MedicinesListComponent } from './medicine-list/medicine-list.component'
     CommonModule,
     MedicinesRoutingModule,
     
+
   ]
 })
 export class MedicinesModule { }
