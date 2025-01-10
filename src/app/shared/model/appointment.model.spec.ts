@@ -1,7 +1,22 @@
-import { Appointment } from './appointment.model';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DoctorsComponent } from 'src/app/doctors/doctors.component';
 
-describe('Appointment', () => {
-  it('should create an instance', () => {
-    expect(new Appointment()).toBeTruthy();
+describe('DoctorsComponent', () => {
+  let component: DoctorsComponent;
+  let fixture: ComponentFixture<DoctorsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ DoctorsComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(DoctorsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

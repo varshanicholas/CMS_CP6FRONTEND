@@ -2,11 +2,14 @@
 
 import { Department } from './department';
 
+<<<<<<< HEAD
+=======
 export class Staff {
   StaffId: number = 0;
   StaffName: string = '';
   Gender: string = '';
   PhoneNumber: string = '';
+>>>>>>> 0d007009698a20ba156b8eb72fb1e8b4ddc0a5e0
 
   Email: string = '';
   Dob: Date = new Date();
@@ -69,3 +72,7 @@ export class Staff {
 // }
 
 
+<<<<<<< HEAD
+   
+=======
+>>>>>>> 0d007009698a20ba156b8eb72fb1e8b4ddc0a5e0
