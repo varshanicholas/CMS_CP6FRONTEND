@@ -12,7 +12,7 @@ import { AppointmentService } from 'src/app/shared/service/appointment.service';
 export class ListDoctorsComponent implements OnInit {
  //declare variables
  page: number=1;
- pageSize: number= 7;
+ pageSize: number= 3 ;
  searchTerm: string='';
 
  appointments: Appointment[] = [];  // List of appointments
@@ -62,6 +62,12 @@ filteredAppointments() {
       drCode.includes(searchTermLower)
     );
   });
+}
+
+// Go back to the appointment list
+goBack() {
+  this.router.navigate(['/doctors/add'])
+  console.log('Redirecting to StartConsulation');
 }
 
 }

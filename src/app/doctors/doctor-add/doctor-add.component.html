@@ -1,53 +1,448 @@
-<div class="container">
-    <h3>Add Consultation</h3>
+
+ <!-- not according to requirement but it works -->
   
-    <!-- Form for Diagnosis and Symptoms -->
+ 
+ <!-- <div class="container">
+  <h3>Start Consultation</h3>
+  <hr>
+  <form #drform="ngForm" (ngSubmit)="onSubmit(drform)" autocomplete="off"> -->
+
+    <!-- Diagnosis, Symptoms, Doctor Notes -->
     <!-- <div class="form-group">
-      <label for="symptoms">Symptoms</label>
-      <input type="text" id="symptoms" class="form-control" [(ngModel)]="symptoms" placeholder="Enter symptoms" name="symptoms" required />
-      <button class="btn btn-info" (click)="addSymptom()">Add Symptom</button>
-    </div> -->
-  
-    <!-- List of Symptoms -->
-    <!-- <div *ngIf="symptomsList.length > 0">
-      <h4>Symptoms List:</h4>
-      <ul>
-        <li *ngFor="let symptom of symptomsList">{{ symptom }}</li>
-      </ul>
-    </div> -->
-  
-    <!-- Form for Diagnosis -->
+      <h4>Diagnosis, Symptoms, and Doctor Notes</h4> -->
+      <!-- Symptoms -->
+      <!-- <label for="Symptoms">Symptoms:</label>
+      <textarea name="Symptoms" [(ngModel)]="symptoms" id="Symptoms" class="form-control" placeholder="Enter symptoms"></textarea> -->
+
+      <!-- Diagnosis -->
+      <!-- <label for="Diagnosis">Diagnosis:</label>
+      <textarea name="Diagnosis" [(ngModel)]="diagnosis" id="Diagnosis" class="form-control" placeholder="Enter diagnosis"></textarea> -->
+
+      <!-- Doctor Notes -->
+      <!-- <label for="DoctorNotes">Doctor Notes:</label>
+      <textarea name="DoctorNotes" [(ngModel)]="doctorNotes" id="DoctorNotes" class="form-control" placeholder="Enter doctor notes"></textarea> -->
+
+    <!-- </div> -->
+
+    <!-- Medicines -->
     <!-- <div class="form-group">
-      <label for="diagnosis">Diagnosis</label>
-      <input type="text" id="diagnosis" class="form-control" [(ngModel)]="diagnosis" placeholder="Enter diagnosis" name="diagnosis" required />
-    </div> -->
-  
-    <!-- Form for Medicine -->
-    <!-- <div class="form-group">
-      <label>Medicine</label>
-      <div *ngFor="let medicine of medicines; let i = index">
-        <input type="text" [(ngModel)]="medicine.CategoryName" class="form-control" placeholder="Category Name" name="categoryName{{i}}" required />
-        <input type="text" [(ngModel)]="medicine.MedicineName" class="form-control" placeholder="Medicine Name" name="medicineName{{i}}" required />
-        <input type="text" [(ngModel)]="medicine.Dosage" class="form-control" placeholder="Dosage" name="dosage{{i}}" required />
-        <input type="text" [(ngModel)]="medicine.Frequency" class="form-control" placeholder="Frequency" name="frequency{{i}}" required />
-        <input type="text" [(ngModel)]="medicine.Quantity" class="form-control" placeholder="Quantity" name="quantity{{i}}" required />
-        <button class="btn btn-danger" (click)="removeMedicine(i)">Remove Medicine</button>
+      <h4>Medicines</h4>
+      <div *ngFor="let med of medicines; let i = index">
+        <div class="medicine-group">
+          <input type="text" placeholder="Category Name" [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control">
+          <input type="text" placeholder="Medicine Name" [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control">
+          <input type="text" placeholder="Dosage" [(ngModel)]="med.Dosage" name="Dosage{{i}}" class="form-control">
+          <input type="text" placeholder="Frequency" [(ngModel)]="med.Frequency" name="Frequency{{i}}" class="form-control">
+          <input type="text" placeholder="Quantity" [(ngModel)]="med.Quantity" name="Quantity{{i}}" class="form-control">
+          <button type="button" class="btn btn-danger" (click)="removeMedicine(i)">Remove</button>
+        </div>
       </div>
-      <button class="btn btn-info" (click)="addMedicine()">Add Medicine</button>
-    </div>
-   -->
-    <!-- Form for Lab Test -->
+      <button type="button" class="btn btn-primary" (click)="addMedicine()">Add Medicine</button>
+    </div> -->
+
+    <!-- Lab Tests -->
     <!-- <div class="form-group">
-      <label>Lab Test</label>
+      <h4>Lab Tests</h4>
       <div *ngFor="let test of labTests; let i = index">
-        <input type="text" [(ngModel)]="test.LabTestName" class="form-control" placeholder="Lab Test Name" name="labTestName{{i}}" required />
-        <input type="text" [(ngModel)]="test.CategoryName" class="form-control" placeholder="Category Name" name="categoryNameTest{{i}}" required />
-        <button class="btn btn-danger" (click)="removeLabTest(i)">Remove Lab Test</button>
+        <div class="labtest-group">
+          <input type="text" placeholder="Lab Test Name" [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control">
+          <input type="text" placeholder="Category Name" [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control">
+          <button type="button" class="btn btn-danger" (click)="removeLabTest(i)">Remove</button>
+        </div>
       </div>
-      <button class="btn btn-info" (click)="addLabTest()">Add Lab Test</button>
-    </div>
-   -->
+      <button type="button" class="btn btn-primary" (click)="addLabTest()">Add Lab Test</button>
+    </div> -->
+
     <!-- Submit Button -->
-    <!-- <button class="btn btn-success" (click)="onSubmit()">Save Consultation</button>
-  </div> -->
-  
+    <!-- <button class="btn btn-success" (click)="onSubmit(drform)">Save Consultation</button>
+
+    </form> -->
+
+
+    <!-- Error Message -->
+    <!-- <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div> 
+</div> -->
+
+
+<!-- Add Medicine and Lab test wont work -->
+<!-- <div class="container">
+  <h3>Start Consultation</h3>
+  <hr>
+  <form #drform="ngForm" (ngSubmit)="onSubmit(drform)" autocomplete="off"> -->
+
+    <!-- Symptoms Section -->
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Symptoms</h4>
+          <textarea name="Symptoms" [(ngModel)]="symptoms" id="Symptoms" class="form-control" placeholder="Enter symptoms"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addSymptom()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Symptoms</h4>
+          <ul>
+            <li *ngFor="let symptom of symptomsList">{{ symptom }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Diagnosis Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Diagnosis</h4>
+          <textarea name="Diagnosis" [(ngModel)]="diagnosis" id="Diagnosis" class="form-control" placeholder="Enter diagnosis"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDiagnosis()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Diagnosis</h4>
+          <ul>
+            <li *ngFor="let diag of diagnosisList">{{ diag }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Doctor Notes Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Doctor Notes</h4>
+          <textarea name="DoctorNotes" [(ngModel)]="doctorNotes" id="DoctorNotes" class="form-control" placeholder="Enter doctor notes"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Doctor Notes</h4>
+          <ul>
+            <li *ngFor="let note of doctorNotesList">{{ note }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Medicines Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>Medicines</h4>
+        <div *ngFor="let med of medicines; let i = index">
+          <div class="medicine-group mb-2">
+            <input type="text" placeholder="Category Name" [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Medicine Name" [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Dosage" [(ngModel)]="med.Dosage" name="Dosage{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Frequency" [(ngModel)]="med.Frequency" name="Frequency{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Quantity" [(ngModel)]="med.Quantity" name="Quantity{{i}}" class="form-control mb-1">
+            <button type="button" class="btn btn-danger mt-2" (click)="removeMedicine(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-2" (click)="addMedicine()">Add Medicine</button>
+
+        <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Medicines</h4>
+          <ul>
+            <li *ngFor="let med of medicinesList">{{ med.CategoryName }} - {{ med.MedicineName }} - {{ med.Dosage }} - {{ med.Frequency }} - {{ med.Quantity }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Lab Tests Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>Lab Tests</h4>
+        <div *ngFor="let test of labTests; let i = index">
+          <div class="labtest-group mb-2">
+            <input type="text" placeholder="Lab Test Name" [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Category Name" [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+            <button type="button" class="btn btn-danger mt-2" (click)="removeLabTest(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-2" (click)="addLabTest()">Add Lab Test</button>
+        <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Lab Tests</h4>
+          <ul>
+            <li *ngFor="let test of labTestsList">{{ test.CategoryName }} - {{ test.LabTestName }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </form> -->
+
+  <!-- Error Message -->
+  <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
+  </div>
+</div> -->
+
+
+<!-- Working code which need slight adjustment -->
+<!-- <div class="container">
+  <h3>Start Consultation</h3>
+  <hr>
+  <form #drform="ngForm" (ngSubmit)="onSubmit(drform)" autocomplete="off"> -->
+
+    <!-- Symptoms Section -->
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Symptoms</h4>
+          <textarea name="Symptoms" [(ngModel)]="symptoms" id="Symptoms" class="form-control" placeholder="Enter symptoms"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addSymptom()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Symptoms</h4>
+          <ul>
+            <li *ngFor="let symptom of symptomsList">{{ symptom }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Diagnosis Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Diagnosis</h4>
+          <textarea name="Diagnosis" [(ngModel)]="diagnosis" id="Diagnosis" class="form-control" placeholder="Enter diagnosis"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDiagnosis()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Diagnosis</h4>
+          <ul>
+            <li *ngFor="let diag of diagnosisList">{{ diag }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Doctor Notes Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Doctor Notes</h4>
+          <textarea name="DoctorNotes" [(ngModel)]="doctorNotes" id="DoctorNotes" class="form-control" placeholder="Enter doctor notes"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Doctor Notes</h4>
+          <ul>
+            <li *ngFor="let note of doctorNotesList">{{ note }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Medicines Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>Medicines</h4>
+        <div *ngFor="let med of medicines; let i = index">
+          <div class="medicine-group mb-2">
+            <input type="text" placeholder="Category Name" [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Medicine Name" [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Dosage" [(ngModel)]="med.Dosage" name="Dosage{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Frequency" [(ngModel)]="med.Frequency" name="Frequency{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Quantity" [(ngModel)]="med.Quantity" name="Quantity{{i}}" class="form-control mb-1">
+            <button type="button" class="btn btn-danger mt-2" (click)="removeMedicine(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-2" (click)="addMedicine()">Add Medicine</button>
+        <button type="button" class="btn btn-primary mt-2" (click)="saveMedicine()">Save</button>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Medicines</h4>
+          <ul>
+            <li *ngFor="let med of medicinesList">{{ med.CategoryName }} - {{ med.MedicineName }} - {{ med.Dosage }} - {{ med.Frequency }} - {{ med.Quantity }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Lab Tests Section -->
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>Lab Tests</h4>
+        <div *ngFor="let test of labTests; let i = index">
+          <div class="labtest-group mb-2">
+            <input type="text" placeholder="Lab Test Name" [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control mb-1">
+            <input type="text" placeholder="Category Name" [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+            <button type="button" class="btn btn-danger mt-2" (click)="removeLabTest(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-2" (click)="addLabTest()">Add Lab Test</button>
+        <button type="button" class="btn btn-primary mt-2" (click)="saveLabTest()">Save</button>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Lab Tests</h4>
+          <ul>
+            <li *ngFor="let test of labTestsList">{{ test.CategoryName }} - {{ test.LabTestName }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Back to Today's Appointment List Button -->
+    <!-- <div class="mt-4">
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Back to Today's Appointment List</button>
+    </div> -->
+
+  <!-- </form> -->
+
+  <!-- Error Message -->
+  <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
+  </div>
+</div> -->
+
+
+<div class="container">
+  <h3>Start Consultation</h3>
+  <hr>
+  <form #drform="ngForm" (ngSubmit)="onSubmit(drform)" autocomplete="off">
+
+    <!-- Symptoms Section -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Symptoms</h4>
+          <textarea name="Symptoms" [(ngModel)]="symptoms" id="Symptoms" class="form-control" placeholder="Enter symptoms"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addSymptom()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Symptoms</h4>
+          <ul>
+            <li *ngFor="let symptom of symptomsList">{{ symptom }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagnosis Section -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Diagnosis</h4>
+          <textarea name="Diagnosis" [(ngModel)]="diagnosis" id="Diagnosis" class="form-control" placeholder="Enter diagnosis"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDiagnosis()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Diagnosis</h4>
+          <ul>
+            <li *ngFor="let diag of diagnosisList">{{ diag }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctor Notes Section -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Doctor Notes</h4>
+          <textarea name="DoctorNotes" [(ngModel)]="doctorNotes" id="DoctorNotes" class="form-control" placeholder="Enter doctor notes"></textarea>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h4>Saved Doctor Notes</h4>
+          <ul>
+            <li *ngFor="let note of doctorNotesList">{{ note }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<!-- Medicines Section -->
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h4>Medicines</h4>
+    <div *ngFor="let med of medicines; let i = index">
+      <div class="medicine-group mb-2">
+        <input type="text" placeholder="Category Name" [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+        <input type="text" placeholder="Medicine Name" [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control mb-1">
+        <input type="text" placeholder="Dosage" [(ngModel)]="med.Dosage" name="Dosage{{i}}" class="form-control mb-1">
+        <input type="text" placeholder="Frequency" [(ngModel)]="med.Frequency" name="Frequency{{i}}" class="form-control mb-1">
+        <input type="text" placeholder="Quantity" [(ngModel)]="med.Quantity" name="Quantity{{i}}" class="form-control mb-1">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary mt-2" (click)="saveMedicine()">Save Medicine</button>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <h4>Saved Medicines</h4>
+      <ul>
+        <li *ngFor="let med of medicinesList; let i = index">
+          {{ med.CategoryName }} - {{ med.MedicineName }} - {{ med.Dosage }} - {{ med.Frequency }} - {{ med.Quantity }}
+          <!-- <button type="button" class="btn btn-danger btn-sm" (click)="removeMedicine(i)">-</button> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Lab Tests Section -->
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h4>Lab Tests</h4>
+    <div *ngFor="let test of labTests; let i = index">
+      <div class="labtest-group mb-2">
+        <input type="text" placeholder="Lab Test Name" [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control mb-1">
+        <input type="text" placeholder="Category Name" [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary mt-2" (click)="saveLabTest()">Save Lab Test</button>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <h4>Saved Lab Tests</h4>
+      <ul>
+        <li *ngFor="let test of labTestsList; let i = index">
+          {{ test.CategoryName }} - {{ test.LabTestName }}
+          <!-- <button type="button" class="btn btn-danger btn-sm" (click)="removeLabTest(i)">-</button> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Back to Today's Appointment List Button -->
+    <div class="mt-4">
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Back to Today's Appointment List</button>
+    </div>
+
+  </form>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
+  </div>
+</div>
