@@ -1,30 +1,25 @@
 
-import {Department} from "./department";
+
+import { Department } from './department';
 
 export class Staff {
-    StaffId: number = 0;
-    StaffName: string = '';
-    Gender: string = '';
-    PhoneNumber: string = ''; 
+  StaffId: number = 0;
+  StaffName: string = '';
+  Gender: string = '';
+  PhoneNumber: string = '';
 
-    Email: string = '';
-    Dob: Date = new Date();
-    Address: string = '';
-    Qualification: string = '';
+  Email: string = '';
+  Dob: Date = new Date();
+  Address: string = '';
+  Qualification: string = '';
 
-       DepartmentId: number = 0;
-       IsActive: boolean = false;
-        CreatedDate: Date = new Date();
-    //Object Oriented Model
-  
+  DepartmentId: number = 0;
+  IsActive: boolean = false;
+  CreatedDate: Date = new Date();
+  //Object Oriented Model
 
-    department : Department = new Department();
-
-
+  department: Department = new Department();
 }
-
-
-
 
 
 // import { Department } from "./department";
@@ -72,8 +67,5 @@ export class Staff {
 
 //     department: Department = new Department();
 // }
-
-
-   
 
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from './login/login.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { ReceptionistdashComponent } from './receptionistdash/receptionistdash.component';
@@ -18,8 +19,14 @@ const routes: Routes = [
   { path: 'notfound', component: PagenotfoundComponent }
 ];
 
+
+const routes: Routes = [];
+
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule {}
+
+export class AuthRoutingModule { }
+

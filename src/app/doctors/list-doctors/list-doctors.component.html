@@ -1,0 +1,59 @@
+<!-- <p>list-doctors works!</p>
+<router-outlet></router-outlet> -->
+
+<div class="container">
+    <!-- Header -->
+    <br>
+    <h3>Todays Appointment</h3>
+    <br>
+  
+    <!-- Search and Add Appointment -->
+    <div class="header">
+      <div class="row">
+        <!-- Search -->
+        <div class="col-sm-8">
+          <input type="search" class="form-control" placeholder="Search here ..." [(ngModel)]="searchTerm">
+        </div>
+  
+        <!-- Add Appointment -->
+        <div class="col-sm-4">
+          <a [routerLink]="['/appointments/add']" role="button" class="btn btn-outline-primary">
+            <i class="fa fa-calendar-plus fa-lg"> </i> Add Appointment
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Display Appointment Records -->
+    <br>
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">AppointmentId</th>
+          <th scope="col">PatientName</th>
+          <th scope="col">Gender</th>
+          <th scope="col">BloodGroup</th>
+          <th scope="col">PhoneNumber</th>
+          <th scope="col">DepartmentName</th>
+          <th scope="col">AppointmentDate</th>
+          <th scope="col">TokenNumber</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of filteredAppointments() | paginate:{ itemsPerPage: pageSize, currentPage: page }">
+          <td>{{'DR'+appointment.AppointmentId}}</td>
+          <td>{{appointment.PatientName}}</td>
+          <td>{{appointment.Gender}}</td>
+          <td>{{appointment.BloodGroup}}</td>
+          <td>{{appointment.PhoneNumber}}</td>
+          <td>{{appointment.DepartmentName}}</td>
+          <td>{{appointment.AppointmentDate | date: 'dd-MMM-yyyy'}}</td>
+          <td>{{appointment.TokenNumber}}</td>
+          <td>
+  
+          </td>
+        </tr>
+      </tbody>
+    </table>

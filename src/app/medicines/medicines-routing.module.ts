@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { MedicinesListComponent } from './medicine-list/medicines-list.component';
-import { MedicinesAddComponent } from './medicine-add/medicine-add.component';
-//import { MedicinesEditComponent } from './medicines-edit/medicines-edit.component';
+// import { NgModule } from '@angular/core';
+// import { RouterModule, Routes } from '@angular/router';
+
+// import { MedicinesListComponent } from './medicine-list/medicines-list.component';
+// import { MedicinesAddComponent } from './medicine-add/medicine-add.component';
+// //import { MedicinesEditComponent } from './medicines-edit/medicines-edit.component';
 
 
 
@@ -11,22 +12,43 @@ import { MedicinesAddComponent } from './medicine-add/medicine-add.component';
 
 
 
+
+// const routes: Routes = [
+// //   //            //SETTING-UP CHILDREN ROUTES
+// // //   //staff-list
+//   {path : 'list', component: MedicinesListComponent},
+
+// // //   //staff-add
+//   {path : 'add', component: MedicinesAddComponent},
+
+// // //   //staff-edit
+//  // {path : 'edit/:id', component: MedicinesEditComponent},
+
+
+
+
+// ];
+
+// =======
+import { MedicinesListComponent } from './medicine-list/medicine-list.component';
+import { MedicineAddComponent } from './medicine-add/medicine-add.component';
+import { MedicineEditComponent } from './medicine-edit/medicine-edit.component';
 
 const routes: Routes = [
-//   //            //SETTING-UP CHILDREN ROUTES
-// //   //staff-list
-  {path : 'list', component: MedicinesListComponent},
 
-// //   //staff-add
-  {path : 'add', component: MedicinesAddComponent},
+  //medicine-list
 
-// //   //staff-edit
- // {path : 'edit/:id', component: MedicinesEditComponent},
+{path:'list',component:MedicinesListComponent},
+  //medicine-add
 
+  {path:'add',component:MedicineAddComponent},
 
+  //medicine-edit
 
+  {path:'edit/:id',component:MedicineEditComponent},
 
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -3,3 +3,4 @@ export class Department {
     DepartmentName: string =  '';
 
 }
+
