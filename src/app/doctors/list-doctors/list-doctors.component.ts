@@ -1,122 +1,122 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Appointment } from 'src/app/shared/model/appointment.model';
-import { AppointmentService } from 'src/app/shared/service/appointment.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
-  selector: 'app-list-doctors',
-  templateUrl: './list-doctors.component.html',
-  styleUrls: ['./list-doctors.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class ListDoctorsComponent implements OnInit {
- //declare variables
- page: number=1;
- pageSize: number= 3 ;
- searchTerm: string='';
-=======
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
-// import { Appointment } from 'src/app/shared/model/appointment.model';
 
->>>>>>> 0d007009698a20ba156b8eb72fb1e8b4ddc0a5e0
 
-// @Component({
-//   selector: 'app-list-doctors',
-//   templateUrl: './list-doctors.component.html',
-//   styleUrls: ['./list-doctors.component.scss']
-// })
-// export class ListDoctorsComponent implements OnInit {
-//  //declare variables
-//  page: number=1;
-//  pageSize: number= 7;
-//  searchTerm: string='';
 
-//  appointments: Appointment[] = [];  // List of appointments
-//  filteredAppointmentsList: Appointment[] = [];  // Filtered list for display
-//   constructor(
+export class LoginComponent implements OnInit {
 
-//     private router: Router, 
-//     private route: ActivatedRoute,
-//     private toastr : ToastrService) { }
+  loginForm!: FormGroup;  //!-nver nullable orundefined, if ? -v.versa
+  isSubmitted: boolean = false; //to check whther it is true/false, when clicking login
+  error: string = '';
 
- 
-<<<<<<< HEAD
-  //Life Cycle hook
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
+
   ngOnInit(): void {
-    // Get doctor ID from route parameters
-    const docId = Number(this.route.snapshot.paramMap.get('docId'));
-    console.log('Doctor ID:', docId);
-    if (docId) {
-      // Fetch appointments for the doctor
-      this.appointmentService.getTodaysAppointments(docId).subscribe(
-        (response:any) => {
-          this.appointmentService.appointments = response;
-          console.log(this.appointments);
-        },
-        (error:any) => {
-          console.error('Error fetching appointments:', error);
-        }
-      );
+
+    //Create Reactive Form
+    this.loginForm = this.formBuilder.group({
+      username: ['',[Validators.required]], //validations can be given here required,....
+      password: ['',[Validators.required]]
+    });
+  }
+
+  get formControls() {
+    return this.loginForm.controls;
+  }
+
+  //Functionality
+  loginCredentials(): void {
+    //setting value for isSubmitted
+    this.isSubmitted = true;
+
+    //checking form, if it is INVALID
+    if(this.loginForm.invalid) {
+      this.toastr.error('Please enter UserName and Password', 'EMS v2024')
+      this.error = "Please enter UserName and Password"
+      return;
     }
-  }
-   // Search Method for Appointments
-filteredAppointments() {
-  if (!this.searchTerm) {
-    return this.appointmentService.appointments;  // Assuming you have appointment data stored in the service
-  }
-=======
-//   //Life Cycle hook
-//   ngOnInit(): void {
-//     // Get doctor ID from route parameters
-//     const docId = Number(this.route.snapshot.paramMap.get('docId'));
 
-//     if (docId) {
-//       // Fetch appointments for the doctor
-//       this.appointmentService.getTodaysAppointments(docId).subscribe(
-//         (response:any) => {
-//           this.appointments = response;
-//           console.log(this.appointments);
-//         },
-//         (error:any) => {
-//           console.error('Error fetching appointments:', error);
-//         }
-//       );
-//     }
-//   }
-//    // Search Method for Appointments
-// filteredAppointments() {
-//   if (!this.searchTerm) {
-//     return this.appointmentService.appointments;  // Assuming you have appointment data stored in the service
-//   }
->>>>>>> 0d007009698a20ba156b8eb72fb1e8b4ddc0a5e0
+    //Checking form, if it is VALID
+    if(this.loginForm.valid) {
+      this.error= '';
+      console.log(this.loginForm.value);
 
-//   const searchTermLower = this.searchTerm.toLowerCase();
+      //Checking Login credentials
+      this.authService.loginVerify(this.loginForm.value)
+      .subscribe((response) => {
+        console.log(response.roleId);
 
-//   // Return filtered appointment list based on the search term
-//   return this.appointmentService.appointments.filter((d: Appointment)  => {
-    
-//     const drCode = `DR${d.AppointmentId}`.toLowerCase();
-//     return (
-//       d.PatientName.toLowerCase().includes(searchTermLower) ||
-//       d.AppointmentId.toString().toLowerCase().includes(searchTermLower) ||
-//       d.PhoneNumber.toLowerCase().includes(searchTermLower) ||
-//       d.DepartmentName.toLowerCase().includes(searchTermLower) ||
-//       drCode.includes(searchTermLower)
-//     );
-//   });
-// }
+        //Based on Role, need to redirect
+        if(response == null) {
+          this.error = "Invalid User Name and Password"
+        }
 
-<<<<<<< HEAD
-// Go back to the appointment list
-goBack() {
-  this.router.navigate(['/doctors/add'])
-  console.log('Redirecting to StartConsulation');
+        if(response.roleId === 1) {
+          console.log("Administartor");
+          //localstorage 
+          
+          localStorage.setItem('USER_NAME', response.uName);
+          localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
+          localStorage.setItem('JWT_TOKEN', response.token);
+          this.router.navigate(['auth/admin']);
+        }
+        else if(response.roleId === 2){
+          console.log("Receptionist");
+          
+          localStorage.setItem('USER_NAME', response.uName);
+          localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
+          localStorage.setItem('JWT_TOKEN', response.token);
+          this.router.navigate(['auth/receptionist']);
+        }
+else if(response.roleId === 3){
+            console.log("Doctor");
+           
+            localStorage.setItem('USER_NAME', response.uName);
+            localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
+            localStorage.setItem('JWT_TOKEN', response.token);
+            this.router.navigate(['auth/doctor']);
+          }
+else if(response.roleId === 4){
+          console.log("Pharmasist");
+          
+          localStorage.setItem('USER_NAME', response.uName);
+          localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
+          localStorage.setItem('JWT_TOKEN', response.token);
+          this.router.navigate(['auth/pharmacist']);
+        }
+else if(response.roleId === 5){
+          console.log("LabTechnician");
+          
+          localStorage.setItem('USER_NAME', response.uName);
+          localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
+          localStorage.setItem('JWT_TOKEN', response.token);
+          this.router.navigate(['auth/labtechnician']);
+        }
+
+
+        else {
+          this.error = "Sorry! Invalid credentials not allowed to the system"
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.error = "Invalid User Name and Password";
+      });
+
+    }
+  };
+
 }
-
-}
-=======
-// }
->>>>>>> 0d007009698a20ba156b8eb72fb1e8b4ddc0a5e0
