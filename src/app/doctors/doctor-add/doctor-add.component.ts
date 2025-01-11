@@ -131,7 +131,7 @@ export class DoctorAddComponent implements OnInit {
     //     this.labTests.splice(index, 1);
     // }
 
-    // Save medicine and push to list
+   /* // Save medicine and push to list
     saveMedicine() {
     if (this.medicines && this.medicines.length > 0) {
       this.medicinesList.push(...this.medicines);
@@ -151,7 +151,20 @@ export class DoctorAddComponent implements OnInit {
     } else {
       this.errorMessage = 'Please add lab test details';
     }
-  }
+  }*/
+
+    saveMedicine() {
+      this.medicinesList.push(...this.medicines);
+      this.medicines = [];
+    }
+
+    saveLabTest() {
+      this.labTestsList.push(...this.labTests);
+      this.labTests = [];
+    }
+
+
+  
 
   // Go back to the appointment list
   goBack() {

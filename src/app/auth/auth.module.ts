@@ -22,20 +22,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReceptionistdashComponent,
     LabtechniciandashComponent,
     PharmasistdashComponent,
-
-
-import { AuthRoutingModule } from './auth-routing.module';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DoctordashComponent } from './doctordash/doctordash.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-
-
-@NgModule({
-  declarations: [
-    NavbarComponent,
-
+    
     DoctordashComponent,
     PagenotfoundComponent
+
+
   ],
   imports: [
     CommonModule,

@@ -15,12 +15,10 @@ const routes: Routes = [
   { path: 'receptionist', component: ReceptionistdashComponent },
   { path: 'labtechnician', component: LabtechniciandashComponent },
   { path: 'pharmacist', component: PharmasistdashComponent },
-  { path: 'doctor', component: DoctordashComponent },
+  { path: 'docdash', component: DoctordashComponent },
   { path: 'notfound', component: PagenotfoundComponent }
 ];
 
-
-const routes: Routes = [];
 
 
 @NgModule({

@@ -6,7 +6,8 @@ import { ListDoctorsComponent } from './list-doctors/list-doctors.component';
 const routes: Routes = [
 
 
-  { path: 'list/:docId', component: ListDoctorsComponent },
+  // { path: 'list/:docId', component: ListDoctorsComponent },
+  { path: 'list', component: ListDoctorsComponent },
   { path: 'add', component: DoctorAddComponent }
 ];
 
