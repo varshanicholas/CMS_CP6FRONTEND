@@ -1,9 +1,19 @@
-
-<p>doctordash works!</p>
-
-<div class="container mt-4">
-    <h2>Doctor Dashboard</h2>
-    <button class="btn btn-primary mt-3" routerLink="/doctors/appointments-today">View Today's Appointments</button>
+<div class="container mt-2">
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
+      <a [routerLink]="['/doctors/list/', docId]" role="button" class="btn btn-outline-primary mb-3">
+        <span>
+          <i class="fa fa-users fa-lg"></i>
+        </span>
+        <br>Today's Appointment
+      </a>
+      <br>
+      <a [routerLink]="['/receptionist/PatientsList']" role="button" class="btn btn-outline-primary">
+        <span>
+          <i class="fa fa-users fa-lg"></i>
+        </span>
+        <br>View Patient History
+      </a>
+    </div>
   </div>
-  
-
+</div>

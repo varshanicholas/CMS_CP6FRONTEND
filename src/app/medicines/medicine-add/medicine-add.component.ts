@@ -61,6 +61,6 @@ export class MedicinesAddComponent implements OnInit {
       }
     );
   }
-
+}
 
 

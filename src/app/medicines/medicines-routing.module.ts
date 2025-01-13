@@ -29,10 +29,12 @@
 
 // ];
 
-// =======
+
 import { MedicinesListComponent } from './medicine-list/medicine-list.component';
-import { MedicineAddComponent } from './medicine-add/medicine-add.component';
+import { MedicinesAddComponent } from './medicine-add/medicine-add.component';
 import { MedicineEditComponent } from './medicine-edit/medicine-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
 
@@ -41,7 +43,7 @@ const routes: Routes = [
 {path:'list',component:MedicinesListComponent},
   //medicine-add
 
-  {path:'add',component:MedicineAddComponent},
+  {path:'add',component:MedicinesAddComponent},
 
   //medicine-edit
 
