@@ -10,13 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { UserregistrationComponent } from './model/userregistration/userregistration.component';
-
 @NgModule({
   declarations: [
 
     AppComponent,
-
-   
     UserregistrationComponent,
 
   ],

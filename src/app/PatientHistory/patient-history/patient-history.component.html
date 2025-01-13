@@ -1,0 +1,64 @@
+<div class="container">
+    <!-- Patient History List -->
+    <div *ngIf="!showDetails">
+      <h3>Patient History</h3>
+  
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Appointment Date</th>
+            <th>Symptoms</th>
+            <th>Diagnosis</th>
+            <th>Doctor Notes</th>
+            <th>Specialization</th>
+            <th>Staff Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let history of patientHistories">
+            <td>{{ history.AppointmentDate | date: 'dd-MMM-yyyy' }}</td>
+            <td>{{ history.Symptoms }}</td>
+            <td>{{ history.Diagnosis }}</td>
+            <td>{{ history.DoctorNotes }}</td>
+            <td>{{ history.Specialization }}</td>
+            <td>{{ history.StaffName }}</td>
+            <td>
+              <!-- <button class="btn btn-primary" (click)="viewDetails(history.AppointmentId)">
+                View Patient History
+              </button> -->
+
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  
+    <!-- Detailed Patient History -->
+    <div *ngIf="showDetails">
+      <h3>Detailed Patient History</h3>
+      <p><strong>Appointment Date:</strong> {{ selectedPatientHistory?.AppointmentDate | date: 'dd-MMM-yyyy' }}</p>
+      <p><strong>Symptoms:</strong> {{ selectedPatientHistory?.Symptoms }}</p>
+      <p><strong>Diagnosis:</strong> {{ selectedPatientHistory?.Diagnosis }}</p>
+      <p><strong>Doctor Notes:</strong> {{ selectedPatientHistory?.DoctorNotes }}</p>
+      <p><strong>Specialization:</strong> {{ selectedPatientHistory?.Specialization }}</p>
+      <p><strong>Medicines:</strong></p>
+      <ul>
+        <li *ngFor="let medicine of selectedPatientHistory?.Medicines">
+          {{ medicine.MedicineName }} - {{ medicine.Dosage }} ({{ medicine.Duration }}, {{ medicine.Frequency }})
+        </li>
+      </ul>
+      <p><strong>Lab Tests:</strong></p>
+      <ul>
+        <li *ngFor="let test of selectedPatientHistory?.LabTests">
+          {{ test.LabTestName }} - {{ test.LabTestValue }}
+          <span *ngIf="test.Remarks">({{ test.Remarks }})</span>
+        </li>
+      </ul>
+      
+      
+    </div>
+  </div>
+  

@@ -7,4 +7,5 @@ export class Userregistration {
 
     roleId: number = 0;
     token: string = '';
+  docId: any;
 }

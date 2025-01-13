@@ -1,0 +1,40 @@
+<div class="container">
+    <h3>Lab Test Reports</h3>
+    <br />
+  
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Patient Name</th>
+          <th>Gender</th>
+          <th>Phone Number</th>
+          <th>Blood Group</th>
+          <th>Lab Test Name</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Result Type</th>
+          <th>Reference Range</th>
+          <th>Sample Required</th>
+          <th>Created Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of labTestReports">
+          <td>{{ report.PatientName }}</td>
+          <td>{{ report.Gender }}</td>
+          <td>{{ report.PhoneNumber }}</td>
+          <td>{{ report.BloodGroup }}</td>
+          <td>{{ report.LabTestName }}</td>
+          <td>{{ report.CategoryName }}</td>
+          <td>{{ report.Status }}</td>
+          <td>{{ report.ResultType }}</td>
+          <td>{{ report.ReferenceMinRange }} - {{ report.ReferenceMaxRange }}</td>
+          <td>{{ report.SampleRequired }}</td>
+          <td>{{ report.CreatedDate | date: 'dd-MMM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button class="btn btn-primary" (click)="goBack()" routerLink="list/:docId">Back to Appointments</button>
+  </div>
+  

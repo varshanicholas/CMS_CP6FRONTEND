@@ -435,18 +435,6 @@ Working Final Code -->
 </div> -->
 
 
-    <!-- Back to Today's Appointment List Button -->
-    <!-- <div class="mt-4">
-      <button type="button" class="btn btn-secondary" (click)="goBack()">Back to Today's Appointment List</button>
-    </div> -->
-
-  <!-- </form> -->
-
-  <!-- Error Message -->
-  <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-4">
-    {{ errorMessage }}
-  </div>
-</div> -->
 <div class="container">
   <h3>Start Consultation</h3>
   <hr>
@@ -458,7 +446,7 @@ Working Final Code -->
         <div class="form-group">
           <h4>Symptoms</h4>
           <textarea name="Symptoms" [(ngModel)]="symptoms" id="Symptoms" class="form-control" placeholder="Enter symptoms"></textarea>
-          <button type="button" class="btn btn-primary mt-2" (click)="addSymptom()">Add Symptom</button>
+          <button type="button" class="btn btn-primary mt-2" (click)="addSymptom()">Save</button>
         </div>
       </div>
       <div class="col-md-6">
@@ -477,7 +465,7 @@ Working Final Code -->
         <div class="form-group">
           <h4>Diagnosis</h4>
           <textarea name="Diagnosis" [(ngModel)]="diagnosis" id="Diagnosis" class="form-control" placeholder="Enter diagnosis"></textarea>
-          <button type="button" class="btn btn-primary mt-2" (click)="addDiagnosis()">Add Diagnosis</button>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDiagnosis()">Save</button>
         </div>
       </div>
       <div class="col-md-6">
@@ -496,7 +484,7 @@ Working Final Code -->
         <div class="form-group">
           <h4>Doctor Notes</h4>
           <textarea name="DoctorNotes" [(ngModel)]="doctorNotes" id="DoctorNotes" class="form-control" placeholder="Enter doctor notes"></textarea>
-          <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Add Doctor Notes</button>
+          <button type="button" class="btn btn-primary mt-2" (click)="addDoctorNotes()">Save</button>
         </div>
       </div>
       <div class="col-md-6">
@@ -515,57 +503,93 @@ Working Final Code -->
         <h4>Medicines</h4>
         <div *ngFor="let med of medicines; let i = index">
           <div class="medicine-group mb-2">
-            <input type="text" placeholder="Category Name" [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
-            <input type="text" placeholder="Medicine Name" [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control mb-1">
+            <select [(ngModel)]="med.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+              <option value="" disabled selected>Category Name</option>
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+            <select [(ngModel)]="med.MedicineName" name="MedicineName{{i}}" class="form-control mb-1">
+              <option value="" disabled selected>Medicine Name</option>
+              <option *ngFor="let medicine of medicinesDropdown" [value]="medicine">{{ medicine }}</option>
+            </select>
             <input type="text" placeholder="Dosage" [(ngModel)]="med.Dosage" name="Dosage{{i}}" class="form-control mb-1">
             <input type="text" placeholder="Frequency" [(ngModel)]="med.Frequency" name="Frequency{{i}}" class="form-control mb-1">
             <input type="text" placeholder="Quantity" [(ngModel)]="med.Quantity" name="Quantity{{i}}" class="form-control mb-1">
           </div>
         </div>
-        <button type="button" class="btn btn-primary mt-2" (click)="addMedicine()">Add Medicine</button>
-        <button type="button" class="btn btn-success mt-2" (click)="saveMedicine()">Save Medicines</button>
+        <button type="button" class="btn btn-primary mt-2" (click)="saveMedicine()">Save Medicine</button>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <h4>Saved Medicines</h4>
-          <ul>
-            <li *ngFor="let med of medicinesList">
-              {{ med.CategoryName }} - {{ med.MedicineName }} - {{ med.Dosage }} - {{ med.Frequency }} - {{ med.Quantity }}
-            </li>
-          </ul>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let med of medicinesList">
+                <td>{{ med.CategoryName }}</td>
+                <td>{{ med.MedicineName }}</td>
+                <td>{{ med.Dosage }}</td>
+                <td>{{ med.Frequency }}</td>
+                <td>{{ med.Quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
     <!-- Lab Tests Section -->
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <h4>Lab Tests</h4>
-        <div *ngFor="let test of labTests; let i = index">
-          <div class="labtest-group mb-2">
-            <input type="text" placeholder="Lab Test Name" [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control mb-1">
-            <input type="text" placeholder="Category Name" [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary mt-2" (click)="addLabTest()">Add Lab Test</button>
-        <button type="button" class="btn btn-success mt-2" (click)="saveLabTest()">Save Lab Tests</button>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <h4>Saved Lab Tests</h4>
-          <ul>
-            <li *ngFor="let test of labTestsList">
-              {{ test.CategoryName }} - {{ test.LabTestName }}
-            </li>
-          </ul>
-        </div>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h4>Lab Tests</h4>
+    <div *ngFor="let test of labTests; let i = index">
+      <div class="labtest-group mb-2">
+        <select [(ngModel)]="test.CategoryName" name="CategoryName{{i}}" class="form-control mb-1">
+          <option value="" disabled selected>Category Name</option>
+          <option *ngFor="let category of labTestCategories" [value]="category">{{ category }}</option>
+        </select>
+        <select [(ngModel)]="test.LabTestName" name="LabTestName{{i}}" class="form-control mb-1">
+          <option value="" disabled selected>Lab Test Name</option>
+          <option *ngFor="let labTest of labTestsDropdown" [value]="labTest">{{ labTest }}</option>
+        </select>
       </div>
     </div>
+    <button type="button" class="btn btn-primary mt-2" (click)="saveLabTest()">Save Lab Test</button>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <h4>Saved Lab Tests</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Lab Test</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let test of labTestsList">
+            <td>{{ test.CategoryName }}</td>
+            <td>{{ test.LabTestName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 
     <!-- Back to Today's Appointment List Button -->
     <div class="mt-4">
       <button type="button" class="btn btn-secondary" (click)="goBack()">Back to Today's Appointment List</button>
     </div>
+
   </form>
 
   <!-- Error Message -->

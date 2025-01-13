@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container"> -->
   <!-- Header -->
   <!-- <br>
   <h3>Todays Appointment</h3>
@@ -110,11 +110,11 @@
           </button>
         </td>
         <td>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" (click)="viewPatientHistory(appointment.PatientName)">
             View Patient History
           </button>
           <br><br>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary " (click)="viewlabtesthistory(appointment.AppointmentId)">
             View LabTest Report
           </button>
         </td>
