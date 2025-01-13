@@ -22,13 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReceptionistdashComponent,
     LabtechniciandashComponent,
     PharmasistdashComponent,
-    NavbarComponent,
-
     DoctordashComponent,
     PagenotfoundComponent
 
 
-    
   ],
   imports: [
     CommonModule,

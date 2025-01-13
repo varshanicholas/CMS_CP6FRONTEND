@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctordashComponent implements OnInit {
 
+  docId: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    // Retrieve docId dynamically from localStorage
+    this.docId = localStorage.getItem('DOCTOR_ID');
+    console.log('Doctor ID:', this.docId);
+
+    
   }
 
 }

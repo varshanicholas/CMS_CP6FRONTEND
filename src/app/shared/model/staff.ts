@@ -1,5 +1,3 @@
-
-
 import { Department } from './department';
 
 export class Staff {

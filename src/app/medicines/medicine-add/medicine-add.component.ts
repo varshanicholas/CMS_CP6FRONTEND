@@ -48,19 +48,22 @@
 //         this.toastr.success('Medicine added successfully!', 'Medicine Manager');
 //         this.errorMessage = null; // Clear any previous errors
 
-//         // Refresh the medicines list
-//         this.medicinesService.getAllMedicines();
 
-//         // Redirect to the list view
-//         this.router.navigate(['/medicines/list']);
-//       },
-//       (error) => {
-//         console.error(error);
-//         this.toastr.error('Failed to add medicine. Try again.', 'Medicine Manager');
-//         this.errorMessage = 'An error occurred: ' + error.message;
-//       }
-//     );
-//   }
+        // Refresh the medicines list
+        this.medicinesService.getAllMedicines();
+
+        // Redirect to the list view
+        this.router.navigate(['/medicines/list']);
+      },
+      (error) => {
+        console.error(error);
+        this.toastr.error('Failed to add medicine. Try again.', 'Medicine Manager');
+        this.errorMessage = 'An error occurred: ' + error.message;
+      }
+    );
+  }
+}
+
 
 
 // }

@@ -1,15 +1,9 @@
 import { NgModule } from '@angular/core';
 
-//import { NgxPaginationModule } from 'ngx-pagination';
-
-
-//import { ToastrModule } from 'ngx-toastr';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{HttpClientModule}from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -18,13 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { UserregistrationComponent } from './model/userregistration/userregistration.component';
-
 @NgModule({
   declarations: [
 
     AppComponent,
-
-   
     UserregistrationComponent,
 
   ],
@@ -47,6 +38,7 @@ import { UserregistrationComponent } from './model/userregistration/userregistra
 
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
