@@ -104,11 +104,14 @@ export class PatientregService {
 
   insertAppointment(newAppointment: NewAppointment): Observable<any> {
     console.log('Insert Patient: In Service');
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post(
-      `${environment.apiUrl}Appointment/SaveAppointment`,
-      newAppointment,
-      { headers }
-    );
+    console.log(newAppointment);
+    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // return this.httpClient.post(
+    //   `${environment.apiUrl}Appointment/SaveAppointment`,
+    //   newAppointment,
+    //   { headers }
+    // );
+    return this.httpClient
+    .post(environment.apiUrl + 'Appointment/bkAppointment',newAppointment);
   }
 }
