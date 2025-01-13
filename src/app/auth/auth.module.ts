@@ -22,7 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReceptionistdashComponent,
     LabtechniciandashComponent,
     PharmasistdashComponent,
-    
     DoctordashComponent,
     PagenotfoundComponent
 

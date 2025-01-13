@@ -19,18 +19,22 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 export class ListDoctorsComponent implements OnInit {
  //declare variables
  page: number=1;
- pageSize: number= 3 ;
+ pageSize: number= 7;
  searchTerm: string='';
+
  patients: any[] = [];
  doctorId!: number;
+
 
  appointments: Appointment[] = [];  // List of appointments
  filteredAppointmentsList: Appointment[] = [];  // Filtered list for display
   constructor(
+
     public appointmentService: AppointmentService , 
     private patientHistoryService: PatientHistoryService,
     private patientregService: PatientregService,
     private router: Router, 
+
     private route: ActivatedRoute,
     private toastr : ToastrService) { }
 
@@ -64,7 +68,7 @@ filteredAppointments() {
 
   // Return filtered appointment list based on the search term
   return this.appointmentService.appointments.filter((d: Appointment)  => {
-    
+
     const drCode = `DR${d.AppointmentId}`.toLowerCase();
     return (
       d.PatientName.toLowerCase().includes(searchTermLower) ||
@@ -74,6 +78,7 @@ filteredAppointments() {
       drCode.includes(searchTermLower)
     );
   });
+
 }
 
 fetchPatientHistory(): void {
@@ -102,8 +107,10 @@ async fetchPatients(): Promise<void> {
 goBack() {
   this.router.navigate(['/doctors/add'])
   console.log('Redirecting to StartConsulation');
-}
 
+}
+ // Go back to the appointment list
+ 
 
 
 

@@ -1,39 +1,52 @@
-
-
 <div class="container">
   <h3>APPOINTMENT BOOKING</h3>
-
   <hr>
 
-  <!--Template driven from form-->
+  <!--Template driven form-->
   <form name="appointmentForm" #appForm="ngForm" autocomplete="off" (ngSubmit)="onSubmit(appForm)">
 
     <div class="form-group">
-      <input type="hidden" readonly name="AppontmentId"
+      <input type="hidden" readonly name="AppointmentId"
         [(ngModel)]="patientregService.formAppointmentData.AppointmentId" />
-
     </div>
-
-    <!-- <div>
-      <label for="patientId">Patient ID</label>
-      <input
-        type="text"
-        id="patientId"
-        name="patientId"
-        [value]="patientId"
-        readonly
-      />
-    </div> -->
-    
-
-    
+<!-- 
     <div class="form-group">
       <label for="patientName">Patient Name</label>
-      <input type="text" class="form-control"  id="patientName"
-      name="patientName"
-      [value]="patientName"
-      readonly readonly />
+      <input type="text" class="form-control" id="patientName"
+        name="patientName" [value]=""
+        [(ngModel)]="patientregService.formAppointmentData.patientName"
+        readonly />
+    </div>  -->
+     <!-- Patient ID -->
+     <!-- <div class="form-group">
+      <label for="patientId">Patient ID:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="patientId"
+        name="patientId"
+        [(ngModel)]="PatientId"
+        required
+        [ngClass]="{'is-invalid': appForm.submitted && !PatientId}"
+      />
+      <div *ngIf="appForm.submitted && !appointment.PatientId" class="validation-error">
+        Patient ID is required.
+      </div>
+    </div> -->
+
+    <!-- Patient Name -->
+    <div class="form-group">
+      <label for="patientName">Patient Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="patientName"
+        name="patientName"
+        [(ngModel)]="patientName"
+        readonly
+      />
     </div>
+
 
     <div class="form-group">
       <label>Department:</label>
@@ -42,109 +55,62 @@
         (change)="onDepartmentChange($event)">
         <option value="0" selected disabled> ---Select Department---</option>
         <option *ngFor="let dept of patientregService.department" [value]="dept.DepartmentId">
-          {{dept.DepartmentName}}
+          {{ dept.DepartmentName }}
         </option>
       </select>
     </div>
 
-
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label>Doctor:</label>
       <select name="DoctorName" id="DoctorName" [(ngModel)]="selectedDoctorId"
-        (change)="onDoctorChange(selectedDoctorId)" class="form-control" required>
-        <option value="0" disabled selected>---Select Doctor---</option>
-        <option *ngFor="let doctor of doctors" [value]="doctor.DoctorId">
-          {{ doctor.Staff.StaffName || 'Unknown' }}
-
-        </option>
-      </select>
-    </div> -->
-
-    <div class="form-group">
-      <label>Doctor:</label>
-      <select
-        name="DoctorName"
-        id="DoctorName"
-        [(ngModel)]="selectedDoctorId"
-        (change)="onDoctorChange($event)"
-        class="form-control"
-        required
-      >
+        (change)="onDoctorChange($event)" class="form-control" required>
         <option value="0" disabled selected>---Select Doctor---</option>
         <option *ngFor="let doctor of doctors" [value]="doctor.DoctorId">
           {{ doctor.Staff.StaffName || 'Unknown' }}
         </option>
       </select>
     </div>
-    
 
-<!-- Consultation Fee -->
-<div class="form-group">
-  <label for="fee">Consultation Fee:</label>
-  <input
-    type="text"
-    id="fee"
-    readonly
-    class="form-control"
-    [value]="consultationFee || 'Unknown'"
-  />
-</div>
-
- 
-    <!--  
-  <div class="form-group">
-    <label>Doctor:</label>
-    <select name="DoctorName" id="DoctorName" [(ngModel)]="selectedDoctorId" (change)="onDoctorChange(selectedDoctorId)" class="form-control" required>
-      <option value="0" selected disabled>---Select Doctor---</option>
-      <option *ngFor="let doctor of doctors" [value]="doctor.DoctorId">
-        {{ doctor.Staff.StaffName }}
-      </option>
-    </select>
-  </div> -->
+    <!-- Consultation Fee -->
+    <div class="form-group">
+      <label for="fee">Consultation Fee:</label>
+      <input type="text" id="fee"  class="form-control"
+        [(ngModel)]="consultationFee" [value]="consultationFee || 'Unknown'" />
+    </div>
 
     <div class="form-group">
-      <label>Appointmnet Date:</label>
-      <input type="date" name="AppointmentDate" #AppointmentDate="ngModel" class="form-control validation-error"
-        [(ngModel)]="patientregService.formAppointmentData.AppointmentDate" class="form-control"
-        placeholder="Enter the Appointment date " required
+      <label>Appointment Date:</label>
+      <input type="date" name="AppointmentDate" #AppointmentDate="ngModel" class="form-control"
+        [(ngModel)]="patientregService.formAppointmentData.AppointmentDate" required
         [ngClass]="{'is-invalid': AppointmentDate.touched && AppointmentDate.invalid}" />
-      <!--touched : keyboard touch-cursor point-while we type-->
-
       <div class="validation-error" *ngIf="AppointmentDate.touched && AppointmentDate.invalid">
         <div *ngIf="AppointmentDate.errors?.['required']">
-          Appointmnet Date is invalid or required!
+          Appointment Date is required!
         </div>
       </div>
     </div>
 
-
-
-
     <div class="form-group">
-      <label>Registartion Fees:</label>
-      <input type="text" class="form-control" [value]=200 readonly />
+      <label>Registration Fees:</label>
+      <input type="text" class="form-control" [value]="200"  [(ngModel)]="registrationFees" />
     </div>
-
-
 
     <div class="form-group">
       <label>Token Number</label>
-      <input type="text" class="form-control"   />
+      <input type="text" class="form-control" name="TokenNumber" [(ngModel)]="patientregService.formAppointmentData.TokenNumber" />
     </div>
 
- <!-- Submit -->
- <div class="form-group">
-  <button type="submit" class="btn btn-lg btn-primary form-control" [disabled]="!appForm.valid">
-      Book Appointment
-  </button>
-</div>
+    <!-- Submit -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-lg btn-primary form-control" [disabled]="!appForm.valid">
+        Book Appointment
+      </button>
+    </div>
 
-<!-- Error After submission -->
-<div *ngIf="errorMessage" class="error-message validation-error">
-  {{errorMessage}}
-</div>
-
+    <!-- Error After submission -->
+    <div *ngIf="errorMessage" class="error-message validation-error">
+      {{ errorMessage }}
+    </div>
 
   </form>
-
 </div>

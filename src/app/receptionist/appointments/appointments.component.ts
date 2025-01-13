@@ -26,6 +26,7 @@ export class AppointmentsComponent implements OnInit {
 errorMessage: any;
   toastr: any;
   router: any;
+ngModel: any;
 
   constructor(
     public patientregService: PatientregService,
@@ -183,26 +184,66 @@ this.router.navigate(['/receptionist']);
   
 //Insert Method
 
-bookAppointment(appForm:NgForm){
-  console.log("Inserting...")
-  this.patientregService.insertAppointment(appForm.value).subscribe(
-    (response)=>{
-      console.log(response);
-      this.toastr.success('Appointment Booked successfully ');
+// bookAppointment(appForm:NgForm){
+//   console.log("Inserting...");
+//   console.log(appForm.value);
+//   this.patientregService.insertAppointment(appForm.value).subscribe(
+//     (response)=>{
+//       console.log(response);
+//       this.toastr.success('Appointment Booked successfully ');
 
-      this.errorMessage=null;
+//       this.errorMessage=null;
 
-      this.router.navigate(['/receptionist']);
+//       this.router.navigate(['/receptionist']);
    
-    },
+//     },
 
-    (error)=>{
-      console.log(error);
-      this.toastr.error('An error occured try again...')
-      this.errorMessage='An Error occured'+error;
+//     (error)=>{
+//       console.log(error);
+//       this.toastr.error('An error occured try again...')
+//       this.errorMessage='An Error occured'+error;
+//     }
+//   );
+// }
+  
+
+
+bookAppointment(appForm: NgForm) {
+  console.log('Form Submitted:', appForm.value);
+
+  const newAppointment: NewAppointment = {
+    AppointmentId: 0, // Default or generated
+    DoctorId: appForm.value.DoctorId || '', // Ensure proper mapping
+    DepartmentId: appForm.value.DepartmentId || '',
+    department: appForm.value.Department || '',
+    doctor: appForm.value.DoctorName || '',
+    patient: appForm.value.PatientName || '',
+    PatientId: appForm.value.PatientId || 0,
+    AppointmentDate: appForm.value.AppointmentDate,
+    TokenNumber: appForm.value.TokenNumber || '',
+    ConsultationFees: appForm.value.ConsultationFees || 0,
+    RegistrationFees: appForm.value.RegistrationFees || 0,
+    ConsultationStatus: appForm.value.ConsultationStatus || false,
+    DocAvlId: appForm.value.DocAvlId || 0,
+    CreatedDate: new Date(),
+  };
+  
+
+  this.patientregService.insertAppointment(newAppointment).subscribe(
+    (response) => {
+      console.log('Appointment Response:', response);
+      this.toastr.success('Appointment Booked successfully');
+      this.errorMessage = null;
+      this.router.navigate(['/receptionist']);
+    },
+    (error) => {
+      console.error('Error while booking appointment:', error);
+      this.toastr.error('An error occurred. Please try again.');
+      this.errorMessage = 'An Error occurred: ' + error.message;
     }
   );
 }
-  
+
+
   
 }

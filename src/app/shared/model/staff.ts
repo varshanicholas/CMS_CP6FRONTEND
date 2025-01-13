@@ -1,6 +1,7 @@
 import { Department } from './department';
 
 export class Staff {
+  
   StaffId: number = 0;
   StaffName: string = '';
   Gender: string = '';

@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('USER_NAME', response.uName);
           localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
           localStorage.setItem('JWT_TOKEN', response.token);
-          this.router.navigate(['auth/admin']);
+          this.router.navigate(['staffs/list']);
         }
         else if(response.roleId === 2){
           console.log("Receptionist");
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('USER_NAME', response.uName);
           localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
           localStorage.setItem('JWT_TOKEN', response.token);
-          this.router.navigate(['auth/receptionist']);
+          this.router.navigate(['receptionist']);
         }
 else if(response.roleId === 3){
             console.log("Doctor");
@@ -87,10 +87,12 @@ else if(response.roleId === 3){
             localStorage.setItem('USER_NAME', response.uName);
             localStorage.setItem('ACCESS_ROLE', response.roleId.toString());
             localStorage.setItem('JWT_TOKEN', response.token);
+
             // Dynamically store docId if it exists in the response
             if (response.docId) {
               localStorage.setItem('DOCTOR_ID', response.docId.toString());
           }
+
             this.router.navigate(['auth/docdash']);
           }
 else if(response.roleId === 4){

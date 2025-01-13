@@ -1,3 +1,6 @@
+
+  
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DoctorsRoutingModule } from './doctors-routing.module';
@@ -28,3 +31,4 @@ import { PatientHistoryComponent } from '../PatientHistory/patient-history/patie
     ],
 })
 export class DoctorsModule { }
+
