@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Appointment } from 'src/app/shared/model/appointment.model';
@@ -6,11 +7,15 @@ import { AppointmentService } from 'src/app/shared/service/appointment.service';
 import { PatientHistoryService } from 'src/app/shared/service/patient-history.service';
 import { PatientregService } from 'src/app/shared/service/patientreg.service';
 
+import { AuthService } from 'src/app/shared/service/auth.service';
+
+
 @Component({
-  selector: 'app-list-doctors',
-  templateUrl: './list-doctors.component.html',
-  styleUrls: ['./list-doctors.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
+
 export class ListDoctorsComponent implements OnInit {
  //declare variables
  page: number=1;
